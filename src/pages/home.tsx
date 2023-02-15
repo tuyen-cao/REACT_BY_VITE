@@ -10,7 +10,6 @@ export default function Home() {
             <>
                 <HeroBanners />
                 <CategoryBanner />
-
             </>
         </MainLayout>
     )
