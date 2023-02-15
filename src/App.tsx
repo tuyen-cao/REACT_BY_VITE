@@ -1,8 +1,3 @@
-
-import { MainLayout } from './components/layout';
-import Box from './components/common/box';
-
-
 import "./assets/css/font-awesome.min.css"
 import './assets/css/elegant-icons.css'
 import "./assets/css/magnific-popup.css"
