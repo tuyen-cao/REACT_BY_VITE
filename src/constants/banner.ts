@@ -1,0 +1,1 @@
+export const NUMBER_BANNER_ITEMS = 3
