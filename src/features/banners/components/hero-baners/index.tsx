@@ -1,41 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import HeroBannerItem from './hero-banner-item';
 
-
-export function HeroBanners() {
-    const bannerList = [
-        {
-            id: 1,
-            collectionType: "Collection",
-            collectionName: "Collection Name",
-            collectionDescription: "Description",
-            bannerImage: "/img/hero/hero-1.jpg",
-            socials: [{
+const bannerList = [
+    {
+        id: 1,
+        collectionType: "Collection",
+        collectionName: "Collection Name",
+        collectionDescription: "Description",
+        bannerImage: "/img/hero/hero-1.jpg",
+        socials: [{
+            path: "facebook.com",
+            name: "facebook"
+        }]
+    },
+    {
+        id: 2,
+        collectionType: "Collection 2",
+        collectionName: "Collection Name 2",
+        collectionDescription: "Description 2",
+        bannerImage: "/img/hero/hero-2.jpg",
+        socials: [
+            {
                 path: "facebook.com",
                 name: "facebook"
-            }]
-        },
-        {
-            id: 2,
-            collectionType: "Collection 2",
-            collectionName: "Collection Name 2",
-            collectionDescription: "Description 2",
-            bannerImage: "/img/hero/hero-2.jpg",
-            socials: [
-                {
-                    path: "facebook.com",
-                    name: "facebook"
-                },
-                {
-                    path: "instagram.com",
-                    name: "instagram"
-                }
-            ]
-        }
-    ]
-
+            },
+            {
+                path: "instagram.com",
+                name: "instagram"
+            }
+        ]
+    }
+]
+export function HeroBanners() {
     const [activeBanner, setActive] = useState(0)
     const [stageStyle, setStageStyle] = useState({})
+
+    const activeRef = useRef(0)
 
     useEffect(() => {
         setStageStyle({
@@ -43,6 +43,24 @@ export function HeroBanners() {
             transition: `all 0s ease 0s`,
             width: `${bannerList.length * 100}vw`
         })
+
+        console.log(activeRef.current + " =========  " + activeBanner);
+        const prevItem = document.querySelector(`.owl-item:nth-of-type(${activeRef.current + 1})`)
+        const currentItem = document.querySelector(`.owl-item:nth-of-type(${activeBanner + 1})`)
+        if (activeRef.current !== activeBanner) {
+            prevItem?.classList.add('owl-animated-out')
+            prevItem?.classList.add('fadeOut')
+            setTimeout(() => {
+                prevItem?.classList.remove('owl-animated-out')
+                prevItem?.classList.remove('fadeOut')
+            }, 1000)
+
+
+
+            //currentItem?.classList.remove('owl-animated-out')
+            //currentItem?.classList.remove('fadeOut')
+            console.log(prevItem)
+        }
     }, [activeBanner])
 
     const gotoItem = (index: number) => {
@@ -53,7 +71,7 @@ export function HeroBanners() {
         if (index < 0) {
             curIndex = bannerList.length - 1
         }
-
+        activeRef.current = activeBanner
         setActive(curIndex)
     }
 

@@ -6,11 +6,16 @@ import "./assets/css/owl.carousel.min.css"
 import "./assets/css/slicknav.min.css"
 
 import './sass/style.scss'
-import { RouterElement } from './routes';
+import { PageRouters } from './routes';
+import { Outlet } from "react-router-dom"
 function App() {
 
-  return (
-    <RouterElement />
+  return (<>
+    <PageRouters />
+    <Outlet />
+  </>
+
+
   )
 }
 

@@ -32,7 +32,7 @@ export default function HeaderMenu(props: HeaderMenuProps) {
                                 <Link to="/checkout">Check Out</Link>
                             </li>
                             <li>
-                                <Link to="/blog-details">Blog Details</Link>
+                                <Link to="/blogs/blog-details">Blog Details</Link>
                             </li>
                         </ul>
                     </li>

@@ -1,46 +1,41 @@
 
-import { useRoutes } from 'react-router-dom';
+import { ErrorBoundary } from '@/components/common';
+import { Route, Routes } from 'react-router-dom';
 import LazyLoadRoutes from './LazyLoadRoutes';
 
-export function RouterElement() {
-    const routes = [
-        {
-            path: '/',
-            name: 'Home',
-            element: LazyLoadRoutes('home'),
-        },
-        {
-            path: '/contact',
-            name: 'Contact',
-            element: LazyLoadRoutes('contact'),
-        },
-        {
-            path: '/shops',
-            name: 'Shops',
-            element: LazyLoadRoutes('shops'),
-            children: [
-                {
-                    path: 'shop-details',
-                    name: 'Shop Details',
-                    element: LazyLoadRoutes('shop-details'),
-                },
-            ],
-        },
-        {
-            path: '/blogs',
-            name: 'Blogs',
-            element: LazyLoadRoutes('blogs'),
-            children: [
-                {
-                    path: 'blog-details',
-                    name: 'Blog Details',
-                    element: LazyLoadRoutes('blog-details'),
-                },
-            ],
-        },
 
-    ];
-
-    return useRoutes(routes);
-
+export const PageRouters = () => {
+    return (
+        <Routes >
+            <Route
+                index
+                element={LazyLoadRoutes('home')}
+                errorElement={<ErrorBoundary />} />
+            <Route
+                path='shops'
+                errorElement={<ErrorBoundary />}>
+                <Route
+                    index
+                    element={LazyLoadRoutes('shops')} />
+                <Route
+                    path='shop-details'
+                    element={LazyLoadRoutes('shop-detail')} />
+            </Route>
+            <Route
+                path='contact'
+                element={LazyLoadRoutes('contact')}
+                errorElement={<ErrorBoundary />} />
+            <Route
+                path='blogs'
+                errorElement={<ErrorBoundary />} >
+                <Route
+                    index
+                    element={LazyLoadRoutes('blogs')} />
+                <Route
+                    path='blog-details'
+                    element={LazyLoadRoutes('blog-detail')} />
+            </Route>
+        </Routes>
+    )
 }
+

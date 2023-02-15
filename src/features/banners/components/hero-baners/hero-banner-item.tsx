@@ -12,7 +12,7 @@ export default function HeroBannerItem({ banner, isActive }: HeroBannerItemProps
 
     return (
         <>
-            <div className={clsx("owl-item animated ", isActive && " owl-animated-in fadeIn active")}>
+            <div className={clsx("owl-item animated ", isActive && " owl-animated-in  active")}>
                 <div className="hero__items set-bg" style={{ backgroundImage: `url(${banner.bannerImage})` }} >
                     <div className="container">
                         <div className="row">
