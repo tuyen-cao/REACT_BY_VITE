@@ -14,3 +14,15 @@ export interface ProductItemType {
     rating: Rating,
     type: string
 }
+
+export interface BasketItem {
+    id: number,
+    quantity: number
+    price: number
+}
+
+
+
+export interface ProductsState {
+    products: BasketItem[]
+}

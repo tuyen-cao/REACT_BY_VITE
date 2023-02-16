@@ -1,5 +1,6 @@
 import { PRODUCTTYPES } from '@/constants';
-import { ProductItemType } from '@/models';
+import { BasketItem, ProductItemType } from '@/models';
+import { formatCurrency } from '@/ultilities';
 import styled from 'styled-components'
 import { RatingBlock } from './rating';
 
@@ -42,7 +43,7 @@ export function ProductItem({ product, addToCart }: ProductItemProps) {
                     + Add To Cart
                 </AddToCartStyled>
                 <RatingBlock rating={product.rating} />
-                <h5>${product.price}</h5>
+                <h5>{formatCurrency.format(product.price)}</h5>
                 <div className="product__color-select">
                     <label htmlFor="pc-1">
                         <input type="radio" id="pc-1" />

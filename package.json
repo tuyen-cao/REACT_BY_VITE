@@ -11,10 +11,12 @@
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^2.9.10",
+    "@reduxjs/toolkit": "^1.9.2",
     "clsx": "^1.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.1",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
     "styled-components": "^5.3.6",
     "yup": "^0.32.11"

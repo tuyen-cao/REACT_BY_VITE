@@ -1,14 +1,25 @@
 import { ProductItem } from '@/components/products';
-import { ProductItemType } from '@/models';
+import { BasketItem, ProductItemType } from '@/models';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '@/features/products/slice'
+import { useCallback } from 'react';
+import { number } from 'prop-types';
 
 export interface ProductSectionProps {
     productList: ProductItemType[]
 }
 
 export default function ProductSection({ productList }: ProductSectionProps) {
-    const handleAddToCart = (productId: number) => {
-        console.log(productId + " added to cart");
-    }
+    const dispath = useDispatch()
+    const handleAddToCart = useCallback((id: number) => {
+
+        dispath(addToCart({
+            id: id,
+            quantity: 1,
+            price: productList.filter(p => p.id === id)[0].price
+        }))
+    }, [])
+
     return (<>
 
         {productList.length &&
@@ -20,7 +31,6 @@ export default function ProductSection({ productList }: ProductSectionProps) {
                         </div>
                     )
                 })}
-
 
             </div>}
     </>
