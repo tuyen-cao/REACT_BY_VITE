@@ -1,6 +1,6 @@
 import { MainLayout } from '@/components/layout';
-import { ProductItem } from '@/components/products';
-import ProductSection from '@/features/products/product-section';
+import { ProductSection } from '@/features/products/components';
+
 
 
 
@@ -76,14 +76,7 @@ export default function Shops() {
                                 </div>
                             </div>
                             <div className="col-lg-9">
-                                {/*  <ProductOption showingFilterResult={{
-                                    currentPage: page,
-                                    numOfItems: data?.data?.length === NUMOFITEMPERPAGE ? NUMOFITEMPERPAGE : data?.data?.length,
-                                    totalItems: data.headers['x-total-count']
-                                }} onProductSort={handleProductSort} /> */}
                                 <ProductSection productList={productList} />
-                                {/*  {data.headers['x-total-count'] > NUMOFITEMPERPAGE &&
-                                    <PaginationBlock totalItems={data.headers['x-total-count']} onPageChange={handlePageChange} />} */}
                             </div>
                         </div>
                     </div>

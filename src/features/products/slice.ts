@@ -2,6 +2,7 @@ import { createSelector, createSlice, current } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { BasketItem, ProductsState } from '@/models'
 import { RootState } from '@/redux/store'
+import { formatCurrency } from '@/ultilities'
 
 
 
@@ -14,25 +15,40 @@ const slice = createSlice({
     initialState: initialState,
     reducers: {
         addToCart: (state: ProductsState, action: PayloadAction<BasketItem>) => {
-            state.products.push(action.payload)
+            const product = state.products.find((product) => product.id === action.payload.id)
+            if (product) {
+                product.quantity = product.quantity + action.payload.quantity
+            } else {
+                state.products.push(action.payload)
+            }
+        },
+        removeItem: (state: ProductsState, action: PayloadAction<number>) => {
+            state.products = state.products.filter(p => p.id !== action.payload)
+        },
+        updateCart: (state: ProductsState, action: PayloadAction<BasketItem[]>) => {
+            action.payload.map(item => {
+                const product = state.products.find(p => p.id === item.id)
+                if (product) product.quantity = item.quantity
+            })
         }
     },
 })
 
 const { actions, reducer } = slice
-export const { addToCart } = actions
+export const { addToCart, removeItem, updateCart } = actions
 export default reducer
 
 
 export const numOfProducts = createSelector(
     (state: RootState) => state.product.products,
-    (products) => products.length
-
+    (products) => {
+        return products.reduce((preValue: number, product: BasketItem) => preValue + product.quantity, 0)
+    }
 )
-export const subtotal = createSelector(
+export const getSubtotal = createSelector(
     (state: RootState) => state.product.products,
-    (products) => products.reduce(
-        (preValue: number, prod: BasketItem) => preValue + prod.quantity * prod.price, 0)
+    (products) => formatCurrency.format(products.reduce(
+        (preValue: number, prod: BasketItem) => preValue + prod.quantity * prod.price, 0))
 )
 
 export const getAllProductsInCart = (state: RootState) => {

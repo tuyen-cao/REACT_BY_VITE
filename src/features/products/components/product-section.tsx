@@ -1,15 +1,15 @@
 import { ProductItem } from '@/components/products';
-import { BasketItem, ProductItemType } from '@/models';
+import { ProductItemType } from '@/models';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '@/features/products/slice'
 import { useCallback } from 'react';
-import { number } from 'prop-types';
+
 
 export interface ProductSectionProps {
     productList: ProductItemType[]
 }
 
-export default function ProductSection({ productList }: ProductSectionProps) {
+export function ProductSection({ productList }: ProductSectionProps) {
     const dispath = useDispatch()
     const handleAddToCart = useCallback((id: number) => {
 

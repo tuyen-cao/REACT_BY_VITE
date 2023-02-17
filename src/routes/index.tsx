@@ -20,10 +20,17 @@ export const PageRouters = () => {
                 <Route
                     path='shop-details'
                     element={LazyLoadRoutes('shop-detail')} />
+                <Route
+                    path='shopping-cart'
+                    element={LazyLoadRoutes('shopping-cart')} />
             </Route>
             <Route
                 path='contact'
                 element={LazyLoadRoutes('contact')}
+                errorElement={<ErrorBoundary />} />
+            <Route
+                path='checkout'
+                element={LazyLoadRoutes('checkout')}
                 errorElement={<ErrorBoundary />} />
             <Route
                 path='blogs'
