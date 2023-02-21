@@ -5,6 +5,6 @@ export const ErrorBoundary = () => {
     console.error(error);
     // Uncaught ReferenceError: path is not defined
     return <section className="spad">
-        <div className="container">{error!.message}
+        <div className="container">Error!!!
         </div></section>
 }
