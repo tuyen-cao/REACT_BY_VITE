@@ -1,7 +1,11 @@
 import { BasketItem } from '@/models';
 import { formatCurrency } from '@/ultilities';
 import { useEffect, useState, ChangeEvent } from 'react';
+import { useQuery } from 'react-query';
+import { useLoaderData } from 'react-router-dom';
 import styled from 'styled-components'
+import { ProductByIdQuery, shoppingCartLoader } from '../loaders';
+import { useCallback } from 'react';
 
 export interface ProductItemInCartProps {
     product: BasketItem,
@@ -10,37 +14,23 @@ export interface ProductItemInCartProps {
 }
 
 export default function ProductItemInCart({ product, handleDelete, handleChangeQuantity }: ProductItemInCartProps) {
-    const [quantity, setQuantity] = useState(0)
-    const getProductById = () => {
-        return {
-            "id": `${product.id}`,
-            "title": "Mens Casual Slim Fit",
-            "price": 15.99,
-            "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
-            "category": "category",
-            "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
 
-            "type": "new",
-            "rating": {
-                "rate": 2.1,
-                "count": 430
-            }
-        }
-    }
-    const prodetail = getProductById()
+    const initialData = useLoaderData() as Awaited<
+        ReturnType<ReturnType<typeof shoppingCartLoader>>
+    >
+    const { data: prodetail } = useQuery(
+        { ...ProductByIdQuery(product.id.toString()), initialData: initialData }
+    )
 
-    const handleClick = () => {
+    const handleClick = useCallback(() => {
         handleDelete!(product.id)
-    }
+    }, [])
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setQuantity(() => Number(e.target.value))
         handleChangeQuantity!({
             ...product, quantity: Number(e.target.value)
         })
-    }
-    useEffect(() => {
-        setQuantity(product.quantity)
     }, [])
     return (
         <TableRowStyled>
@@ -64,7 +54,7 @@ export default function ProductItemInCart({ product, handleDelete, handleChangeQ
                     </div>
                 </div>
             </td>
-            <td className="cart__price">{formatCurrency.format(product.price * quantity)}</td>
+            <td className="cart__price">{formatCurrency.format(product.price * product.quantity)}</td>
             <td className="cart__close">
                 <button className='bg-transparent border-0' onClick={handleClick}><i className="fa fa-close" /></button>
             </td>

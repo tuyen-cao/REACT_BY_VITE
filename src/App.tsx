@@ -6,15 +6,20 @@ import "./assets/css/owl.carousel.min.css"
 import "./assets/css/slicknav.min.css"
 
 import './sass/style.scss'
-import { PageRouters } from './routes';
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigation } from "react-router-dom"
+import { MainLayout } from "./components/layout"
+import PagePreloder from "./components/common/page-preloder"
 function App() {
+  const { state } = useNavigation()
 
-  return (<>
-    <PageRouters />
-    <Outlet />
-  </>
+  if (state === 'loading') return <PagePreloder />
 
+  return (
+    <MainLayout>
+      <>
+        <Outlet />
+      </>
+    </MainLayout>
 
   )
 }

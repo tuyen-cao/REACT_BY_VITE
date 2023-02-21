@@ -1,13 +1,9 @@
-import { MainLayout } from '@/components/layout';
-import * as React from 'react';
 
 
 export default function Blogs() {
     return (
-        <MainLayout>
-            <>
-                Blogs
-            </>
-        </MainLayout>
+        <>
+            Blogs
+        </>
     )
 }

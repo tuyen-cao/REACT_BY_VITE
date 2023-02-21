@@ -16,7 +16,7 @@ export function ProductSection({ productList }: ProductSectionProps) {
         dispath(addToCart({
             id: id,
             quantity: 1,
-            price: productList.filter(p => p.id === id)[0].price
+            price: productList.find(p => p.id === id)!.price
         }))
     }, [])
 
