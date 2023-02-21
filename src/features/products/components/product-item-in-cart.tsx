@@ -14,6 +14,8 @@ export interface ProductItemInCartProps {
 }
 
 export default function ProductItemInCart({ product, handleDelete, handleChangeQuantity }: ProductItemInCartProps) {
+    const [quantity, setQuantity] = useState(0)
+
 
     const initialData = useLoaderData() as Awaited<
         ReturnType<ReturnType<typeof shoppingCartLoader>>
@@ -31,6 +33,9 @@ export default function ProductItemInCart({ product, handleDelete, handleChangeQ
         handleChangeQuantity!({
             ...product, quantity: Number(e.target.value)
         })
+    }, [])
+    useEffect(() => {
+        setQuantity(product.quantity)
     }, [])
     return (
         <TableRowStyled>
@@ -54,7 +59,7 @@ export default function ProductItemInCart({ product, handleDelete, handleChangeQ
                     </div>
                 </div>
             </td>
-            <td className="cart__price">{formatCurrency.format(product.price * product.quantity)}</td>
+            <td className="cart__price">{formatCurrency.format(product.price * quantity)}</td>
             <td className="cart__close">
                 <button className='bg-transparent border-0' onClick={handleClick}><i className="fa fa-close" /></button>
             </td>
