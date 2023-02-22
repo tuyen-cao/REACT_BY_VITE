@@ -1,4 +1,4 @@
-import { CartTotal, ShoppingCartTable } from '@/features/products/components';
+import { CartTotal, PromoCode, ShoppingCartTable } from '@/features/products/components';
 import { numOfProducts } from '@/features/products/slice';
 import { useSelector } from 'react-redux';
 
@@ -17,7 +17,7 @@ export default function Home() {
                                 <ShoppingCartTable />
                             </div>
                             <div className="col-lg-4">
-                                {/*  {discount === 0 ? <PromoCode /> : null} */}
+                                <PromoCode />
                                 <div className="cart__total">
                                     <h6>Cart total</h6>
                                     <CartTotal />

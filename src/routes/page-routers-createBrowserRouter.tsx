@@ -2,8 +2,8 @@
 import App from '@/App';
 import { ErrorBoundary } from '@/components/common';
 import { shopLoader, shoppingCartLoader } from '@/features/products/loaders';
-import { createBrowserRouter, createRoutesFromElements, Route, Routes } from 'react-router-dom';
-import LazyLoadRoutes from './LazyLoadRoutes';
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import LazyLoadRoutes from './lazy-load-routes';
 
 
 export const router = createBrowserRouter(

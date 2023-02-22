@@ -1,5 +1,4 @@
 
-import { CatBannerProps } from '@/models/banner';
 import CategoryItem from './banner-item';
 
 

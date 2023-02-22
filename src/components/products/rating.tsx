@@ -12,7 +12,7 @@ export function RatingBlock(props: RatingProps) {
     } } = props
     const rate = rating.rate
     const renderRating = () => {
-        let content = []
+        const content = []
         for (let index = 0; index < 5; index++) {
             const className = index < rate ? 'fa fa-star' : 'fa fa-star-o'
             content.push(<i className={'fa ' + className} key={"star" + index} />)

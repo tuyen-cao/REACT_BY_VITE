@@ -8,24 +8,24 @@ export interface CategoryItemProps {
     pos?: number
 }
 
-export default function CategoryItem({ catItem, pos }: CategoryItemProps) {
+export default function CategoryItem({ catItem, pos = 0 }: CategoryItemProps) {
     return (
         <>
-            {pos! % NUMBER_BANNER_ITEMS === 0 &&
+            {pos % NUMBER_BANNER_ITEMS === 0 &&
                 <div className="col-lg-7 offset-lg-4">
                     <div className="banner__item">
                         <Item catItem={catItem} />
                     </div>
                 </div>
             }
-            {pos! % NUMBER_BANNER_ITEMS === 1 &&
+            {pos % NUMBER_BANNER_ITEMS === 1 &&
                 <div className="col-lg-5">
                     <div className="banner__item banner__item--middle">
                         <Item catItem={catItem} />
                     </div>
                 </div>
             }
-            {pos! % NUMBER_BANNER_ITEMS === 2 &&
+            {pos % NUMBER_BANNER_ITEMS === 2 &&
                 <div className="col-lg-7">
                     <div className="banner__item banner__item--last">
                         <Item catItem={catItem} />

@@ -2,10 +2,8 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-export interface HeaderMenuProps {
-}
 
-export default function HeaderMenu(props: HeaderMenuProps) {
+export default function HeaderMenu() {
     return (
         <div className="col-lg-6 col-md-6">
             <nav className="header__menu mobile-menu">

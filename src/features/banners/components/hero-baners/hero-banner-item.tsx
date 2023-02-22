@@ -26,9 +26,9 @@ export default function HeroBannerItem({ banner, isActive }: HeroBannerItemProps
 
                                     {banner.socials?.length &&
                                         <div className="hero__social">
-                                            {banner.socials.map(item => {
+                                            {banner.socials.map((item, i) => {
                                                 return (
-                                                    <Link to={item.path}>
+                                                    <Link to={item.path} key={`hero-social-${i}`}>
                                                         <i className={`fa fa-${item.name}`}></i></Link>
                                                 )
                                             })}

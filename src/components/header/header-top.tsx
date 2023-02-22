@@ -1,9 +1,6 @@
 import * as React from 'react';
 
-export interface HeaderTopProps {
-}
-
-export default function HeaderTop(props: HeaderTopProps) {
+export default function HeaderTop() {
     return (
         <div className="header__top">
             <div className="container">

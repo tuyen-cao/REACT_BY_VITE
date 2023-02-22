@@ -1,15 +1,10 @@
 
 import { getSubtotal, numOfProducts } from '@/features/products/slice';
-import { formatCurrency } from '@/ultilities';
-
-
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-export interface ShoppingCartLinkProps {
-}
 
-export default function ShoppingCartLink(props: ShoppingCartLinkProps) {
+export default function ShoppingCartLink() {
     const totalItems = useSelector(numOfProducts)
     const subTotal = useSelector(getSubtotal)
 

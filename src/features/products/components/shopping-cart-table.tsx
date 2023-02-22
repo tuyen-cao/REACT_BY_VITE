@@ -1,17 +1,13 @@
 import { BasketItem } from "@/models";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getAllProductsInCart } from "../slice";
 import { ShoppingCartProductsTable } from "./shopping-cart-products-table";
 import { ShoppingCartTableActions } from "./shopping-cart-table-actions";
 
-
-export interface ShoppingCartTableProps {
-}
-
-export function ShoppingCartTable(props: ShoppingCartTableProps) {
+export function ShoppingCartTable() {
     const basketItems = useSelector(getAllProductsInCart)
-    let drafBasketList: BasketItem[] = []
+    const drafBasketList: BasketItem[] = useMemo(() => [], [])
 
     const updateQuantity = useCallback((basketItem: BasketItem) => {
         const product = drafBasketList.find(item => item.id === basketItem.id)
@@ -19,7 +15,8 @@ export function ShoppingCartTable(props: ShoppingCartTableProps) {
         else {
             product.quantity = basketItem.quantity
         }
-    }, [])
+    }, [drafBasketList])
+
     return (
         <>
             <ShoppingCartProductsTable products={basketItems} updateQuantity={updateQuantity} />

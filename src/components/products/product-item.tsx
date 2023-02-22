@@ -1,5 +1,5 @@
 import { PRODUCTTYPES } from '@/constants';
-import { BasketItem, ProductItemType } from '@/models';
+import { ProductItemType } from '@/models';
 import { formatCurrency } from '@/ultilities';
 import styled from 'styled-components'
 import { RatingBlock } from './rating';
@@ -11,7 +11,7 @@ export interface ProductItemProps {
 }
 export function ProductItem({ product, addToCart }: ProductItemProps) {
     const handleClickAddToCart = () => {
-        addToCart!(product.id)
+        addToCart?.(product.id)
     }
     return (
         <ProductItemStyled className="product__item">

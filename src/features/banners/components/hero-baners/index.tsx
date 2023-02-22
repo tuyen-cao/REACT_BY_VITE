@@ -46,7 +46,7 @@ export function HeroBanners() {
 
         console.log(activeRef.current + " =========  " + activeBanner);
         const prevItem = document.querySelector(`.owl-item:nth-of-type(${activeRef.current + 1})`)
-        const currentItem = document.querySelector(`.owl-item:nth-of-type(${activeBanner + 1})`)
+
         if (activeRef.current !== activeBanner) {
             prevItem?.classList.add('owl-animated-out')
             prevItem?.classList.add('fadeOut')

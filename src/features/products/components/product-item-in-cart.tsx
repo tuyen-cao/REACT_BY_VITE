@@ -25,18 +25,18 @@ export default function ProductItemInCart({ product, handleDelete, handleChangeQ
     )
 
     const handleClick = useCallback(() => {
-        handleDelete!(product.id)
-    }, [])
+        handleDelete?.(product.id)
+    }, [handleDelete, product.id])
 
     const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setQuantity(() => Number(e.target.value))
-        handleChangeQuantity!({
+        handleChangeQuantity?.({
             ...product, quantity: Number(e.target.value)
         })
-    }, [])
+    }, [handleChangeQuantity, product])
     useEffect(() => {
         setQuantity(product.quantity)
-    }, [])
+    }, [product.quantity])
     return (
         <TableRowStyled>
             <td className="product__cart__item">

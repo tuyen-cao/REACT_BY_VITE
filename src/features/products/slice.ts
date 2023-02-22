@@ -1,4 +1,4 @@
-import { createSelector, createSlice, current } from '@reduxjs/toolkit'
+import { createSelector, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { BasketItem, ProductsState } from '@/models'
 import { RootState } from '@/redux/store'

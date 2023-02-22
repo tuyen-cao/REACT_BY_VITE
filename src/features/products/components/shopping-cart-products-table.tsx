@@ -1,7 +1,6 @@
-import { ErrorBoundary } from "@/components/common";
 import { BasketItem } from "@/models";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProductsInCart, removeItem } from "../slice";
+import { useDispatch } from "react-redux";
+import { removeItem } from "../slice";
 import ProductItemInCart from "./product-item-in-cart";
 
 export interface ShoppingCartProductsTableProps {

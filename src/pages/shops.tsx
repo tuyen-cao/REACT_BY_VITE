@@ -21,7 +21,8 @@ export default function Shops() {
                             </div>
                         </div>
                         <div className="col-lg-9">
-                            {productList! &&
+
+                            {productList &&
                                 <ProductSection productList={productList} />}
                         </div>
                     </div>

@@ -12,13 +12,14 @@ export interface ProductSectionProps {
 export function ProductSection({ productList }: ProductSectionProps) {
     const dispath = useDispatch()
     const handleAddToCart = useCallback((id: number) => {
-
+        const product = productList.find(p => p.id === id);
+        const price = product ? product.price : 0;
         dispath(addToCart({
             id: id,
             quantity: 1,
-            price: productList.find(p => p.id === id)!.price
+            price: price
         }))
-    }, [])
+    }, [dispath, productList])
 
     return (<>
 
@@ -26,8 +27,8 @@ export function ProductSection({ productList }: ProductSectionProps) {
             <div className="row" >
                 {productList.map(item => {
                     return (
-                        <div className="col-lg-4 col-md-6 col-sm-6">
-                            <ProductItem key={`product-${item.id}`} product={item} addToCart={handleAddToCart} />
+                        <div className="col-lg-4 col-md-6 col-sm-6" key={`product-${item.id}`}>
+                            <ProductItem product={item} addToCart={handleAddToCart} />
                         </div>
                     )
                 })}

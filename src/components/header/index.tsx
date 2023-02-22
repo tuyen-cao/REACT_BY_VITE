@@ -5,10 +5,8 @@ import HeaderNavOption from './header-nav-option';
 import HeaderTop from './header-top';
 
 
-export interface HeaderProps {
-}
 
-export default function Header(props: HeaderProps) {
+export default function Header() {
     return (
         <header className="header">
             <HeaderTop />

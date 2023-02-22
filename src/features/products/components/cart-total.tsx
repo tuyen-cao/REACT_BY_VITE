@@ -2,10 +2,8 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { getSubtotal } from '../slice';
 
-export interface CartTotalProps {
-}
 
-export function CartTotal(props: CartTotalProps) {
+export function CartTotal() {
     const subtotal = useSelector(getSubtotal)
     return (
         <ul >

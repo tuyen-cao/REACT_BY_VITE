@@ -1,0 +1,15 @@
+{
+    "plugins": [
+        "react-hooks", "prettier"
+    ],
+    "extends": [
+        "prettier", "eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:react/recommended"
+
+    ],
+    "rules": {
+        "react-hooks/exhaustive-deps": "error",
+        "prettier/prettier": ["off"],
+        "no-console": "off",
+        "react/react-in-jsx-scope": "off"
+    }
+}
