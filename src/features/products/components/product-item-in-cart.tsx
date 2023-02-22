@@ -1,28 +1,18 @@
-import { BasketItem } from '@/models';
+import { BasketItem, ProductItemType } from '@/models';
 import { formatCurrency } from '@/ultilities';
 import { useEffect, useState, ChangeEvent } from 'react';
-import { useQuery } from 'react-query';
-import { useLoaderData } from 'react-router-dom';
 import styled from 'styled-components'
-import { ProductByIdQuery, shoppingCartLoader } from '../loaders';
 import { useCallback } from 'react';
 
 export interface ProductItemInCartProps {
     product: BasketItem,
+    productInfor: ProductItemType | undefined,
     handleDelete?: (id: number) => void
     handleChangeQuantity?: (basketItem: BasketItem) => void
 }
 
-export default function ProductItemInCart({ product, handleDelete, handleChangeQuantity }: ProductItemInCartProps) {
+export default function ProductItemInCart({ product, productInfor, handleDelete, handleChangeQuantity }: ProductItemInCartProps) {
     const [quantity, setQuantity] = useState(0)
-
-
-    const initialData = useLoaderData() as Awaited<
-        ReturnType<ReturnType<typeof shoppingCartLoader>>
-    >
-    const { data: prodetail } = useQuery(
-        { ...ProductByIdQuery(product.id.toString()), initialData: initialData }
-    )
 
     const handleClick = useCallback(() => {
         handleDelete?.(product.id)
@@ -41,10 +31,10 @@ export default function ProductItemInCart({ product, handleDelete, handleChangeQ
         <TableRowStyled>
             <td className="product__cart__item">
                 <div className="product__cart__item__pic">
-                    <img src={prodetail.image} alt="" />
+                    <img src={productInfor?.image} alt="" />
                 </div>
                 <div className="product__cart__item__text">
-                    <h6>{prodetail.title}</h6>
+                    <h6>{productInfor?.title}</h6>
                     <h5>{formatCurrency.format(product.price)}</h5>
                 </div>
             </td>

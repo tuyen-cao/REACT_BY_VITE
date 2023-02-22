@@ -1,6 +1,10 @@
-import { BasketItem } from "@/models";
-import { useDispatch } from "react-redux";
-import { removeItem } from "../slice";
+
+import { BasketItem, ProductItemType } from "@/models";
+import { useQuery } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
+import { useLoaderData } from "react-router-dom";
+import { filterProductsQuery, shoppingCartLoader } from "../loaders";
+import { productIdsAsString, removeItem } from "../slice";
 import ProductItemInCart from "./product-item-in-cart";
 
 export interface ShoppingCartProductsTableProps {
@@ -9,6 +13,18 @@ export interface ShoppingCartProductsTableProps {
 }
 
 export function ShoppingCartProductsTable({ products, updateQuantity }: ShoppingCartProductsTableProps) {
+    const ids = useSelector(productIdsAsString);
+
+    const initialData = useLoaderData() as Awaited<
+        ReturnType<ReturnType<typeof shoppingCartLoader>>
+    >
+    const query = useQuery(
+        { ...filterProductsQuery(ids), initialData: initialData }
+    )
+
+    const filterProducts = query.isFetched ? query.data : undefined
+
+
     const dispath = useDispatch()
     const handleClickDelete = (id: number) => {
         dispath(removeItem(id))
@@ -28,10 +44,12 @@ export function ShoppingCartProductsTable({ products, updateQuantity }: Shopping
                 <tbody>
 
                     {products?.map((product: BasketItem) => {
+                        const productInfor = (filterProducts as ProductItemType[])?.find(p => p.id === product.id)
                         return <>
                             <ProductItemInCart
                                 key={`basket-${product.id}`}
                                 product={product}
+                                productInfor={productInfor}
                                 handleDelete={handleClickDelete}
                                 handleChangeQuantity={updateQuantity} />
                         </>

@@ -14,4 +14,11 @@ export const getProductById = async (id: string) => {
         method: REQUEST_METHOD.GET
     })
 }
+export const filterProducts = async (filter: string) => {
+    const url = API_CONSTANTS.API_FILTER_PRODUCTS.replace('{filter}', filter)
+    return await request({
+        url: url,
+        method: REQUEST_METHOD.GET
+    })
+}
 

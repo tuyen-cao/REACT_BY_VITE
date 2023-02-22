@@ -12,7 +12,8 @@ export interface ProductItemType {
     category: string,
     image: string,
     rating: Rating,
-    type: string
+    type: string,
+    quantity?: number
 }
 
 export interface BasketItem {

@@ -1,19 +1,23 @@
-import { getProductById } from "@/services";
+import { filterProducts } from "@/services";
 import { useQueryClient } from "react-query";
 
 
-export const ProductByIdQuery = (id: string) => ({
-    queryKey: ["product", id],
-    queryFn: () => getProductById(id),
+export const filterProductsQuery = (filter: string) => ({
+    queryKey: ["filter-products", filter],
+    queryFn: () => filterProducts(filter),
 });
 
 
-export const shoppingCartLoader = () =>
-    async (id: string) => {
+export const shoppingCartLoader = () => (
+    async (filter: string) => {
         const queryClient = useQueryClient()
-        const query = ProductByIdQuery(id);
+        const query = filterProductsQuery(filter);
         return (
             queryClient.getQueryData(query.queryKey) ??
             (await queryClient.fetchQuery(query))
         );
-    };
+    }
+)
+
+
+

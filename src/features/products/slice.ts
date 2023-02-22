@@ -51,6 +51,15 @@ export const getSubtotal = createSelector(
         (preValue: number, prod: BasketItem) => preValue + prod.quantity * prod.price, 0))
 )
 
+export const productIdsAsString = createSelector(
+    (state: RootState) => state.product.products,
+    (products) => {
+        let ids = ''
+        products.map(p => ids += `id=${p.id}&`)
+        return ids.slice(0, -1)
+    }
+)
+
 export const getAllProductsInCart = (state: RootState) => {
     return state.product.products
 };
