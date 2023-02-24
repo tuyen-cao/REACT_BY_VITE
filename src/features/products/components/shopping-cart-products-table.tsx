@@ -19,7 +19,11 @@ export function ShoppingCartProductsTable({ products, updateQuantity }: Shopping
         ReturnType<ReturnType<typeof shoppingCartLoader>>
     >
     const query = useQuery(
-        { ...filterProductsQuery(ids), initialData: initialData }
+        {
+            ...filterProductsQuery(ids),
+            enabled: ids !== undefined,
+            initialData: initialData
+        }
     )
 
     const filterProducts = query.isFetched ? query.data : undefined

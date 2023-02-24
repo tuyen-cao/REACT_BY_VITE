@@ -7,14 +7,13 @@ export const filterProductsQuery = (filter: string) => ({
     queryFn: () => filterProducts(filter),
 });
 
-
 export const shoppingCartLoader = () => (
     async (filter: string) => {
         const queryClient = useQueryClient()
-        const query = filterProductsQuery(filter);
+        const filterProQuery = filterProductsQuery(filter);
         return (
-            queryClient.getQueryData(query.queryKey) ??
-            (await queryClient.fetchQuery(query))
+            queryClient.getQueryData(filterProQuery.queryKey) ??
+            (await queryClient.fetchQuery(filterProQuery))
         );
     }
 )

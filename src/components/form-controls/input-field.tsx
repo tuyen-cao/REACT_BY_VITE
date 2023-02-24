@@ -1,17 +1,12 @@
-import * as React from 'react';
+import { InputFieldProps } from '@/models';
 
-export interface InputFieldProps {
-    name: string,
-    label?: string,
-    placeholder?: string
 
-}
 
-export function InputField({ name, label, placeholder }: InputFieldProps) {
+export function InputField({ name, label, placeholder, ...rest }: InputFieldProps) {
     return (<>
         {label !== undefined &&
             <label htmlFor={name}>{label}</label>}
-        <input name={name} placeholder={placeholder} />
+        <input name={name} placeholder={placeholder} {...rest} />
     </>
     )
 }

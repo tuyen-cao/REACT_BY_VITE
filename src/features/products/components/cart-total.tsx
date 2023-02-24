@@ -1,18 +1,27 @@
+import { formatCurrency } from '@/ultilities';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { getSubtotal } from '../slice';
-
+import { getDiscount, getSubtotal, getTotal } from '../slice';
+import { RootState } from '@/redux/store'
 
 export function CartTotal() {
     const subtotal = useSelector(getSubtotal)
+    const total = useSelector(getTotal)
+    const discount = useSelector(getDiscount)
+    const discountPrecent = useSelector((state: RootState) => state.product.discount)
+
     return (
         <ul >
             <li>
-                Subtotal <span>{subtotal}</span>
+                Subtotal <span>{formatCurrency.format(subtotal)}</span>
             </li>
+            {discount > 0 &&
+                <li>
+                    Discount ({discountPrecent}%) <span>{formatCurrency.format(discount)}</span>
+                </li>}
             <li>
-                Total <span>{subtotal}</span>
+                Total <span>{formatCurrency.format(total)}</span>
             </li>
-        </ul>
+        </ul >
     );
 }

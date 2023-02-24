@@ -1,49 +1,84 @@
 import { InputField } from '@/components/form-controls';
 import BlackButton from '@/components/form-controls/black-button';
+import { getPromoCode } from '@/services';
+import { useFormik } from 'formik';
+import { useCallback, useEffect, useState } from 'react';
+import { useQuery, useQueryClient } from 'react-query';
+import { useDispatch } from 'react-redux';
+import { appplyPromoCode } from '@/features/products/slice';
+import { PromoCodeFormErrors } from '@/models';
 
 
+const validate = (values: { promoCode: string }) => {
+    const errors: PromoCodeFormErrors = {};
 
-/* const validate = values => {
-    const errors = {};
-
-    if (!values.PromoCode) {
-        errors.PromoCode = 'Required';
-    } else if (values.PromoCode.length !== 4) {
-        errors.PromoCode = 'Must be 4 characters ';
+    if (!values.promoCode) {
+        errors.promoCode = 'Required';
+    } else if (values.promoCode.length !== 5) {
+        errors.promoCode = 'Must be 5 characters ';
     }
-
-
     return errors;
-}; */
+};
+
 export function PromoCode() {
-    /*   const formik = useFormik({
-          initialValues: {
-              PromoCode: ''
-          },
-          validate,
-          onSubmit: values => {
-              alert(JSON.stringify(values, null, 2));
-          }
-      }); */
+    const dispatch = useDispatch()
+    const queryClient = useQueryClient()
+    const [promocode, setPromoCode] = useState('')
+    const { data, isSuccess } = useQuery(
+        ['promo-code', promocode],
+        () => getPromoCode(promocode),
+        {
+            enabled: Boolean(promocode),
+            initialData: () => {
+                const promoCode = queryClient.getQueryData(['promo-code'])
+                if (promoCode !== undefined) return promoCode
+            }
+        }
+    )
+    const formik = useFormik({
+        initialValues: {
+            promoCode: ''
+        },
+        validate,
+        onSubmit: values => {
+            setPromoCode(Object.values(values)[0])
+        }
+    });
+
+    const applyPromoCode = useCallback(() => {
+        if (isSuccess) {
+            dispatch(appplyPromoCode(data[0].value))
+        }
+    }, [data, dispatch, isSuccess])
+
+    useEffect(() => {
+        if (!formik.isValid) document.getElementById(Object.keys(formik.errors)[0])?.focus()
+        if (isSuccess && data.length > 0) applyPromoCode()
+    }, [applyPromoCode, data, formik.errors, formik.isValid, isSuccess])
+
     return (
         <div className={'was-validated cart__discount'}>
             <h6>Discount codes</h6>
-            <form name="frmPromo" /* onSubmit={formik.handleSubmit} */>
-                <InputField name="PromoCode" placeholder="PromoCode" />
-                <BlackButton type='submit'>
-                    <>Apply</>
-                </BlackButton>
-            </form>
+            <form name="frmPromo" onSubmit={formik.handleSubmit}>
+                <div className='position-relative'>
+                    <InputField
+                        name="promoCode"
+                        id="promoCode"
+                        placeholder="PromoCode"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.promoCode} />
+                    <BlackButton type='submit'>
+                        <>Apply</>
+                    </BlackButton>
+                </div>
 
-            {/*      {!isLoading
-                ? promo?.data?.length === 0 ?
-                    <strong className="invalid-feedback">Coupon code is not valid</strong>
-                    : <>
-                        <strong>{promo?.data[0].value}</strong>
-                        {errors.promocode?.type && <div className="invalid-feedback">{errors.promocode.message}</div>}
-                        {isError && <div className="invalid-feedback">{isError}</div>}
-                    </>
-                : null} */}
-        </div>
+                {formik.touched.promoCode && formik.errors.promoCode
+                    ? <div className="invalid-feedback">{formik.errors.promoCode}</div>
+                    : <> {data?.length === 0 && formik.submitCount > 0 && <div className="invalid-feedback">Coupon code is not valid</div>}</>
+                }
+
+            </form >
+        </div >
     );
 }

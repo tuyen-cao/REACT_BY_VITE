@@ -22,8 +22,18 @@ export interface BasketItem {
     price: number
 }
 
+export interface PromoCodeProps {
+    id: number,
+    value: number
+    code: string
+}
+export interface PromoCodeFormErrors {
+    promoCode?: string;
+}
+
 
 
 export interface ProductsState {
-    products: BasketItem[]
+    products: BasketItem[],
+    discount: number
 }
