@@ -1,2 +1,2 @@
-export * from './error-boundary'
+export * from './router-error-boundary'
 export * from './footer'
