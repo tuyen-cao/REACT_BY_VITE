@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { appplyPromoCode } from '@/features/products/slice';
-import { PromoCodeFormErrors } from '@/models';
+import { PromoCodeFormErrors, PromoCodeProps } from '@/models';
 
 
 const validate = (values: { promoCode: string }) => {
@@ -20,7 +20,7 @@ const validate = (values: { promoCode: string }) => {
     return errors;
 };
 
-export function PromoCode() {
+export function PromoCode({ hasRef = false }: PromoCodeProps) {
     const dispatch = useDispatch()
     const queryClient = useQueryClient()
     const [promocode, setPromoCode] = useState('')
@@ -53,12 +53,12 @@ export function PromoCode() {
 
     useEffect(() => {
         if (!formik.isValid) document.getElementById(Object.keys(formik.errors)[0])?.focus()
-        if (isSuccess && data.length > 0) applyPromoCode()
+        if (isSuccess && data !== null) applyPromoCode()
     }, [applyPromoCode, data, formik.errors, formik.isValid, isSuccess])
 
     return (
         <div className={'was-validated cart__discount'}>
-            <h6>Discount codes</h6>
+            {!hasRef && <h6>Discount codes</h6>}
             <form name="frmPromo" onSubmit={formik.handleSubmit}>
                 <div className='position-relative'>
                     <InputField
@@ -67,7 +67,8 @@ export function PromoCode() {
                         placeholder="PromoCode"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        value={formik.values.promoCode} />
+                        value={formik.values.promoCode}
+                        isFocus={hasRef} />
                     <BlackButton type='submit'>
                         <>Apply</>
                     </BlackButton>

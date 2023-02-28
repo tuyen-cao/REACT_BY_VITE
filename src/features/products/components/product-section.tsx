@@ -13,11 +13,11 @@ export function ProductSection({ productList }: ProductSectionProps) {
     const dispath = useDispatch()
     const handleAddToCart = useCallback((id: number) => {
         const product = productList.find(p => p.id === id);
-        const price = product ? product.price : 0;
         dispath(addToCart({
             id: id,
             quantity: 1,
-            price: price
+            price: product ? product.price : 0,
+            title: product ? product.title : ''
         }))
     }, [dispath, productList])
 

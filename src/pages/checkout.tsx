@@ -1,19 +1,20 @@
-import { useRouteError } from "react-router-dom"
+import { CartTotal, PromoCode } from "@/features/products/components";
+import { getAllProductsInCart } from "@/features/products/slice";
+import { useSelector } from "react-redux";
+import { WithQuestionLink } from "@/features/products/hocs";
 
 
-export default function Home() {
-    console.log(useRouteError())
+const PromoCodeWithLink = WithQuestionLink(PromoCode)
+
+export default function Checkout() {
+    const basketItems = useSelector(getAllProductsInCart)
     return (
-        < section className="checkout" >
+        < section className="spad" >
             <div className="container">
                 <div className="checkout__form">
                     <div className="row">
                         <div className="col-lg-8 col-md-6" >
-                            {/*  {discount === 0 &&
-                                <ErrorBoundary>
-                                    <PromoCodeQuestionLink />
-                                </ErrorBoundary>
-                            } */}
+                            <PromoCodeWithLink hasRef />
                             <form name="frmCheckout" className="was-validated">
                                 {/*    <FocusError formik={formik} /> */}
                                 <h6 className="checkout__title">Billing Details</h6>
@@ -246,10 +247,10 @@ export default function Home() {
                                     Product <span>Total</span>
                                 </div>
 
-                                {/*  {productsInCart &&
+                                {basketItems &&
                                     <ul className="checkout-order__total-products">
-                                        {products.map((p: ProductHasQuantity, index: number) => {
-                                            let formattedNumber = (index + 1).toLocaleString('en-US', {
+                                        {basketItems.map((p, index) => {
+                                            const formattedNumber = (index + 1).toLocaleString('en-US', {
                                                 minimumIntegerDigits: 2,
                                                 useGrouping: false
                                             })
@@ -264,8 +265,9 @@ export default function Home() {
 
                                     </ul>
                                 }
-                                <CartTotal wrapperClassName="checkout-order__total-all" />
+                                {/* <CartTotal wrapperClassName="checkout-order__total-all" />
  */}
+                                <div className="checkout-order__total-all"><CartTotal /></div>
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adip elit, sed do
                                     eiusmod tempor incididunt ut labore et dolore magna aliqua.

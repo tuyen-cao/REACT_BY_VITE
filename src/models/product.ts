@@ -19,7 +19,8 @@ export interface ProductItemType {
 export interface BasketItem {
     id: number,
     quantity: number
-    price: number
+    price: number,
+    title: string
 }
 
 export interface PromoCodeProps {
@@ -36,4 +37,8 @@ export interface PromoCodeFormErrors {
 export interface ProductsState {
     products: BasketItem[],
     discount: number
+}
+
+export interface PromoCodeProps {
+    hasRef?: boolean
 }

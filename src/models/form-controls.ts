@@ -11,5 +11,6 @@ export interface ControlProps {
 export interface InputFieldProps extends ControlProps {
     name: string,
     label?: string,
-    placeholder?: string
+    placeholder?: string,
+    isFocus?: boolean
 }
