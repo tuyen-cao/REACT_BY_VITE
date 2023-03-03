@@ -9,6 +9,8 @@ import './sass/style.scss'
 import { Outlet, useNavigation } from "react-router-dom"
 import { MainLayout } from "./components/layout"
 import PagePreloder from "./components/common/page-preloder"
+
+
 function App() {
 
   const { state } = useNavigation()
@@ -21,7 +23,6 @@ function App() {
         <Outlet />
       </>
     </MainLayout>
-
   )
 }
 

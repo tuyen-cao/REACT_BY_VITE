@@ -10,6 +10,7 @@ import {
   QueryClientProvider,
 } from 'react-query'
 import { router } from './routes';
+import './i18n';
 
 const queryClient = new QueryClient()
 

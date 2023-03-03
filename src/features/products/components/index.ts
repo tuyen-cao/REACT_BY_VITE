@@ -1,4 +1,5 @@
 export * from './cart-total'
+export * from './chect-out-form'
 export * from './promo-code'
 export * from './product-section'
 export * from './shopping-cart-products-table'

@@ -42,3 +42,19 @@ export interface ProductsState {
 export interface PromoCodeProps {
     hasRef?: boolean
 }
+
+
+export interface CheckoutPayload {
+    firstName: string,
+    lastName: string,
+    country: string,
+    address: string,
+    addressapartment: string,
+    city: string,
+    state: string,
+    zipcode: string,
+    phone: string,
+    email: string,
+    acc: string,
+    diffAcc: string
+}

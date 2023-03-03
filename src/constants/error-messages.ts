@@ -1,0 +1,7 @@
+export const ERROR_REQUIRED = 'This field is required.'
+export const ERROR_FIRST_NAME = 'Please enter the last name.'
+export const ERROR_LAST_NAME = 'Please enter the last name.'
+export const ERROR_COUNTRY = 'Please enter the country.'
+export const ERROR_ADDRESS = 'Please enter the address.'
+export const ERROR_CITY = 'Please enter the city.'
+export const ERROR_STATE = 'Please enter the country/State.'

@@ -1,4 +1,6 @@
 export * from './api'
 export * from './banner'
+export * from './error-messages'
 export * from './method-rquest'
+export * from './reg-exp'
 export * from './product'

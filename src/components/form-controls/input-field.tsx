@@ -1,6 +1,6 @@
 import { InputFieldProps } from '@/models';
 import { useRef, useEffect } from 'react'
-
+import parse from "html-react-parser";
 
 
 export function InputField({ name, label, placeholder, isFocus, ...rest }: InputFieldProps) {
@@ -10,8 +10,8 @@ export function InputField({ name, label, placeholder, isFocus, ...rest }: Input
     }, [])
     return (<>
         {label !== undefined &&
-            <label htmlFor={name}>{label}</label>}
-        <input name={name} placeholder={placeholder} {...rest} ref={textInput} />
+            <label htmlFor={name} >{parse(label)}</label>}
+        <input name={name} id={name} placeholder={placeholder} {...rest} ref={textInput} />
     </>
     )
 }
