@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { appplyPromoCode } from '@/features/products/slice';
-import { PromoCodeFormErrors, PromoCodeProps } from '@/models';
+import { PromoCodeFormErrors } from '@/models';
 
 
 const validate = (values: { promoCode: string }) => {
@@ -20,7 +20,7 @@ const validate = (values: { promoCode: string }) => {
     return errors;
 };
 
-export function PromoCode({ hasRef = false }: PromoCodeProps) {
+export function PromoCode({ hasRef = false }: { hasRef?: boolean }) {
     const dispatch = useDispatch()
     const queryClient = useQueryClient()
     const [promocode, setPromoCode] = useState('')

@@ -5,7 +5,6 @@ import { WithQuestionLink } from "@/features/products/hocs";
 import BlackButton from "@/components/form-controls/black-button";
 import { CheckoutPayload } from "@/models";
 import { useForm } from 'react-hook-form';
-import { useRef } from "react";
 
 
 const PromoCodeWithLink = WithQuestionLink(PromoCode)
