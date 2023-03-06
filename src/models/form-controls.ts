@@ -13,6 +13,6 @@ export interface InputFieldProps extends ControlProps {
     name: string,
     label?: string,
     placeholder?: string,
-    isFocus: boolean | undefined,
+    isFocus?: boolean | undefined,
     value?: string
 }

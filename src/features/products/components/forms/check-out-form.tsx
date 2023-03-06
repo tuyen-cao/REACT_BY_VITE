@@ -70,7 +70,6 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
                                         label='Fist Name <span>*</span>'
                                         placeholder='First Name'
                                         name="firstName"
-                                        isFocus={false}
 
                                         onBlur={onBlur} // notify when input is touched
                                         onChange={onChange} // send value to hook form
