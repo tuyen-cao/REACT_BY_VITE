@@ -14,7 +14,7 @@ interface CheckoutFormProps {
 
 export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps) => {
     const formRef = useRef<HTMLFormElement>()
-    const { control, formState, handleSubmit } = useForm<CheckoutPayload>({
+    const { control, formState: { errors }, handleSubmit } = useForm<CheckoutPayload>({
         reValidateMode: "onSubmit",
         shouldUseNativeValidation: true,
         defaultValues: {
@@ -32,8 +32,6 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
             diffAcc: "string"
         }
     })
-    const { errors } = formState
-
     useEffect(() => {
 
         if (isSubmited > 0 && formRef.current) {

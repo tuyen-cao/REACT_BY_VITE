@@ -4,22 +4,41 @@ import { useSelector } from "react-redux";
 import { WithQuestionLink } from "@/features/products/hocs";
 import BlackButton from "@/components/form-controls/black-button";
 import { CheckoutPayload } from "@/models";
-import { useForm } from 'react-hook-form';
 import { PaymentMethodForm } from "@/features/products/components/payment-method-form";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const PromoCodeWithLink = WithQuestionLink(PromoCode)
 
 export default function Checkout() {
     const basketItems = useSelector(getAllProductsInCart)
     const [submitedCount, setSubmited] = useState(0)
+    const [checkoutInfo, setCheckoutInfo] = useState<CheckoutPayload>({})
+    const [paymentMethod, setPaymentMethod] = useState('')
+
     const handleFormSubmit = (payload: CheckoutPayload) => {
-        console.log(payload)
+        setCheckoutInfo(payload)
+        setSubmited(0)
+    }
+    const handlePaymentFormSubmit = (method: string) => {
+        setPaymentMethod(method)
+        // add payment method
+
         setSubmited(0)
     }
     const handleCheckout = () => {
+
         setSubmited((submitedCount) => submitedCount + 1)
     }
+    useEffect(() => {
+        if (paymentMethod !== "" && Object.values(checkoutInfo).length > 0) {
+            console.log({ ...checkoutInfo, paymentMethod: paymentMethod })
+            // store user infor + product info + total 
+
+
+        }
+
+    }, [checkoutInfo, paymentMethod])
+
     return (
         < section className="spad" >
             <div className="container">
@@ -54,14 +73,12 @@ export default function Checkout() {
 
                                     </ul>
                                 }
-                                {/* <CartTotal wrapperClassName="checkout-order__total-all" />
- */}
                                 <div className="checkout-order__total-all"><CartTotal /></div>
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adip elit, sed do
                                     eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                 </p>
-                                <PaymentMethodForm isSubmited={submitedCount} />
+                                <PaymentMethodForm isSubmited={submitedCount} handleFormSubmit={handlePaymentFormSubmit} />
                                 <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
                                     <>PLACE ORDER</>
                                 </BlackButton>

@@ -1,51 +1,70 @@
 import { RadioField } from "@/components/form-controls"
-import BlackButton from "@/components/form-controls/black-button"
-import { useEffect, useRef, FormEvent, useState } from 'react'
+import { ERROR_PAYMENT_METHOD } from "@/constants"
+import { PaymentMethodFormErrors } from "@/models"
+import { useFormik } from "formik"
+import { useEffect, useRef } from 'react'
 
 
 interface PaymentMethodFormProps {
-    isSubmited: number
+    isSubmited: number,
+    handleFormSubmit: (method: string) => void
 }
 
+const validate = (values: { paymentMethod: string }) => {
+    const errors: PaymentMethodFormErrors = {};
 
-export function PaymentMethodForm({ isSubmited = false }: PaymentMethodFormProps) {
-    const frmRef = useRef<HTMLFormElement>()
-    const [isSubmitedaaa, setSubmited] = useState(false)
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log("aaaaa")
+    if (values.paymentMethod === "") {
+        errors.paymentMethod = ERROR_PAYMENT_METHOD;
     }
+    return errors;
+};
+
+
+export function PaymentMethodForm({ isSubmited, handleFormSubmit }: PaymentMethodFormProps) {
+    const frmRef = useRef<HTMLFormElement>()
+
+    const formik = useFormik({
+        initialValues: {
+            paymentMethod: ''
+        },
+        validate,
+        onSubmit: values => {
+            handleFormSubmit(values.paymentMethod)
+        }
+    });
     useEffect(() => {
-        if (isSubmitedaaa && frmRef.current) {
+        if (isSubmited > 0 && frmRef.current) {
             frmRef.current.requestSubmit();
         }
-    }, [isSubmitedaaa, frmRef]);
+    }, [isSubmited, frmRef]);
 
     return (<>
         <form ref={frmRef} name="frmPaymentMethod" className="was-validated"
-            onSubmit={handleSubmit}>
+            onSubmit={formik.handleSubmit}>
             <div className="checkout__input-checkbox">
                 <RadioField
-                    name="paymentmethod"
+                    name="paymentMethod"
                     id='paymentmethodCredit'
                     label="Credit card"
+                    value="Credit"
+
+                    onChange={formik.handleChange}
                 />
             </div>
             <div className="checkout__input-checkbox">
                 <RadioField
-                    name="paymentmethod"
+                    name="paymentMethod"
                     id='paymentmethodPaypal'
                     label="Paypal"
+                    value="Paypal"
+
+                    onChange={formik.handleChange}
                 />
             </div>
-            {/* {formikPaymentMethod.errors.paymentmethod && formikPaymentMethod.errors.paymentmethod && (
-                                        <div className='invalid-feedback'>{formikPaymentMethod.errors.paymentmethod}</div>
-                                    )} */}
-
+            {formik.errors.paymentMethod &&
+                <div className='invalid-feedback'>{formik.errors.paymentMethod}</div>
+            }
         </form>
-        <BlackButton type="submit" cssClass='site-btn' handleClick={() => { setSubmited(true) }}>
-            <>PLACE ORDER sgdgdf</>
-        </BlackButton>
     </>
     );
 }

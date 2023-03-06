@@ -31,6 +31,9 @@ export interface PromoCodeProps {
 export interface PromoCodeFormErrors {
     promoCode?: string;
 }
+export interface PaymentMethodFormErrors {
+    paymentMethod?: string;
+}
 
 
 
