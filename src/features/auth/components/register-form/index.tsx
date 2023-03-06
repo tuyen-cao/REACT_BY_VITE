@@ -29,8 +29,7 @@ export default function RegisterForm({ onSubmit }: LoginFormProps) {
 
                             onBlur={onBlur} // notify when input is touched
                             onChange={onChange} // send value to hook form
-                            inputRef={ref}
-                        />
+                            inputRef={ref} isFocus={false} />
                     )}
                 />
 
@@ -45,8 +44,7 @@ export default function RegisterForm({ onSubmit }: LoginFormProps) {
 
                             onBlur={onBlur} // notify when input is touched
                             onChange={onChange} // send value to hook form
-                            inputRef={ref}
-                        />
+                            inputRef={ref} isFocus={false} />
                     )}
                 />
 

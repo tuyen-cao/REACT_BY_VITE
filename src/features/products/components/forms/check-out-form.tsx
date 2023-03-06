@@ -73,8 +73,7 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
                                         onBlur={onBlur} // notify when input is touched
                                         onChange={onChange} // send value to hook form
                                         inputRef={ref}
-                                        value={value}
-                                    />
+                                        value={value} isFocus={false} />
                                 )}
                             />
                             <div className="invalid-feedback">{errors?.firstName?.message}</div>
@@ -103,8 +102,7 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
 
                                         onBlur={onBlur} // notify when input is touched
                                         onChange={onChange} // send value to hook form
-                                        inputRef={ref}
-                                    />
+                                        inputRef={ref} isFocus={false} />
                                 )}
                             />
                             <div className='invalid-feedback'>{errors?.lastName?.message}</div>
@@ -133,8 +131,7 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
 
                                 onBlur={onBlur} // notify when input is touched
                                 onChange={onChange} // send value to hook form
-                                inputRef={ref}
-                            />
+                                inputRef={ref} isFocus={false} />
                         )}
                     />
                     <div className='invalid-feedback'>{errors?.country?.message}</div>
@@ -161,8 +158,7 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
 
                                 onBlur={onBlur} // notify when input is touched
                                 onChange={onChange} // send value to hook form
-                                inputRef={ref}
-                            />
+                                inputRef={ref} isFocus={false} />
                         )}
                     />
                     <div className='invalid-feedback'>{errors?.address?.message}</div>
@@ -176,8 +172,7 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
 
                                 onBlur={onBlur} // notify when input is touched
                                 onChange={onChange} // send value to hook form
-                                inputRef={ref}
-                            />
+                                inputRef={ref} isFocus={false} />
                         )}
                     />
                 </div>
@@ -203,8 +198,7 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
 
                                 onBlur={onBlur} // notify when input is touched
                                 onChange={onChange} // send value to hook form
-                                inputRef={ref}
-                            />
+                                inputRef={ref} isFocus={false} />
                         )}
                     />
                     <div className='invalid-feedback'>{errors?.city?.message}</div>
@@ -231,8 +225,7 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
 
                                 onBlur={onBlur} // notify when input is touched
                                 onChange={onChange} // send value to hook form
-                                inputRef={ref}
-                            />
+                                inputRef={ref} isFocus={false} />
                         )}
                     />
                     <div className='invalid-feedback'>{errors?.state?.message}</div>
@@ -267,8 +260,7 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
 
                                 onBlur={onBlur} // notify when input is touched
                                 onChange={onChange} // send value to hook form
-                                inputRef={ref}
-                            />
+                                inputRef={ref} isFocus={false} />
                         )}
                     />
                     <div className='invalid-feedback'>{errors?.zipcode?.message}</div>
@@ -297,8 +289,7 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
 
                                         onBlur={onBlur} // notify when input is touched
                                         onChange={onChange} // send value to hook form
-                                        inputRef={ref}
-                                    />
+                                        inputRef={ref} isFocus={false} />
                                 )}
                             />
                             <div className='invalid-feedback'>{errors?.phone?.message}</div>
@@ -328,8 +319,7 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
 
                                         onBlur={onBlur} // notify when input is touched
                                         onChange={onChange} // send value to hook form
-                                        inputRef={ref}
-                                    />
+                                        inputRef={ref} isFocus={false} />
                                 )}
                             />
                             <div className='invalid-feedback'>{errors?.email?.message}</div>
