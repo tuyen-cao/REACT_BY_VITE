@@ -12,7 +12,8 @@ interface CheckoutFormProps {
 }
 
 export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps) => {
-    const formRef = useRef<HTMLFormElement>()
+    const formRef = useRef<HTMLFormElement>(null)
+
     const { control, formState: { errors, isValid }, handleSubmit } = useForm<CheckoutPayload>({
         reValidateMode: "onSubmit",
         shouldUseNativeValidation: true,
