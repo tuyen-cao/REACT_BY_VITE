@@ -1,13 +1,9 @@
 import { InputFieldProps } from '@/models';
-import { useRef, useEffect } from 'react'
 import parse from "html-react-parser";
 
 
-export function CheckboxField({ name, label, placeholder, isFocus, ...rest }: InputFieldProps) {
-    const textInput = useRef(null);
-    useEffect(() => {
-        if (isFocus) textInput.current?.focus()
-    }, [])
+export function CheckboxField({ name, label }: InputFieldProps) {
+
     return (<>
         {label !== undefined &&
             <label htmlFor={name}>{parse(label)}
