@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react'
 import parse from "html-react-parser";
 
 
-export function InputField({ name, label, placeholder, isFocus, ...rest }: InputFieldProps) {
+export function InputField({ name, label, placeholder, isFocus = false, ...rest }: InputFieldProps) {
     const textInput = useRef<HTMLInputElement>(null);
     useEffect(() => {
         if (isFocus) textInput.current?.focus()
