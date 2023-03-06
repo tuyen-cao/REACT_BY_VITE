@@ -1,5 +1,5 @@
 import { RadioField } from "@/components/form-controls"
-import { ERROR_PAYMENT_METHOD } from "@/constants"
+import { ERROR_PAYMENT_METHOD, PAYMENT_METHOD } from "@/constants"
 import { PaymentMethodFormErrors } from "@/models"
 import { useFormik } from "formik"
 import { useEffect, useRef } from 'react'
@@ -21,7 +21,7 @@ const validate = (values: { paymentMethod: string }) => {
 
 
 export function PaymentMethodForm({ isSubmited, handleFormSubmit }: PaymentMethodFormProps) {
-    const frmRef = useRef<HTMLFormElement>()
+    const frmRef = useRef<HTMLFormElement>(null)
 
     const formik = useFormik({
         initialValues: {
@@ -33,10 +33,11 @@ export function PaymentMethodForm({ isSubmited, handleFormSubmit }: PaymentMetho
         }
     });
     useEffect(() => {
-        if (isSubmited > 0 && frmRef.current) {
-            frmRef.current.requestSubmit();
+        console.log(formik.values.paymentMethod)
+        if (isSubmited > 0 && frmRef.current || formik.dirty) {
+            frmRef.current?.requestSubmit();
         }
-    }, [isSubmited, frmRef]);
+    }, [isSubmited, frmRef, formik.dirty, formik.values.paymentMethod]);
 
     return (<>
         <form ref={frmRef} name="frmPaymentMethod" className="was-validated"
@@ -46,7 +47,7 @@ export function PaymentMethodForm({ isSubmited, handleFormSubmit }: PaymentMetho
                     name="paymentMethod"
                     id='paymentmethodCredit'
                     label="Credit card"
-                    value="Credit"
+                    value={PAYMENT_METHOD.CREDIT_CARD}
 
                     onChange={formik.handleChange}
                 />
@@ -56,7 +57,7 @@ export function PaymentMethodForm({ isSubmited, handleFormSubmit }: PaymentMetho
                     name="paymentMethod"
                     id='paymentmethodPaypal'
                     label="Paypal"
-                    value="Paypal"
+                    value={PAYMENT_METHOD.PAYPAL}
 
                     onChange={formik.handleChange}
                 />

@@ -1,11 +1,13 @@
-import { CartTotal, CheckoutForm, PromoCode } from "@/features/products/components";
+import { CartTotal, PromoCode } from "@/features/products/components";
 import { getAllProductsInCart } from "@/features/products/slice";
 import { useSelector } from "react-redux";
 import { WithQuestionLink } from "@/features/products/hocs";
 import BlackButton from "@/components/form-controls/black-button";
 import { CheckoutPayload } from "@/models";
-import { PaymentMethodForm } from "@/features/products/components/payment-method-form";
 import { useState, useEffect } from 'react'
+import { CheckoutForm, PaymentMethodForm } from "@/features/products/components/forms";
+import { PAYMENT_METHOD } from "@/constants";
+import PaypalButton from "@/features/products/components/forms/paypal-button";
 
 const PromoCodeWithLink = WithQuestionLink(PromoCode)
 
@@ -26,14 +28,13 @@ export default function Checkout() {
         setSubmited(0)
     }
     const handleCheckout = () => {
-
         setSubmited((submitedCount) => submitedCount + 1)
     }
     useEffect(() => {
+
         if (paymentMethod !== "" && Object.values(checkoutInfo).length > 0) {
             console.log({ ...checkoutInfo, paymentMethod: paymentMethod })
             // store user infor + product info + total 
-
 
         }
 
@@ -79,9 +80,25 @@ export default function Checkout() {
                                     eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                 </p>
                                 <PaymentMethodForm isSubmited={submitedCount} handleFormSubmit={handlePaymentFormSubmit} />
-                                <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
-                                    <>PLACE ORDER</>
-                                </BlackButton>
+
+
+                                {paymentMethod !== PAYMENT_METHOD.PAYPAL
+                                    && <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
+                                        <>PLACE ORDER</>
+                                    </BlackButton>
+                                }
+
+                                {paymentMethod === PAYMENT_METHOD.PAYPAL
+                                    && Object.values(checkoutInfo).length > 0
+                                    && <PaypalButton />}
+
+                                {paymentMethod === PAYMENT_METHOD.PAYPAL
+                                    && Object.values(checkoutInfo).length === 0
+                                    && <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
+                                        <>PLACE ORDER</>
+                                    </BlackButton>}
+
+
                             </div>
                         </div>
                     </div>

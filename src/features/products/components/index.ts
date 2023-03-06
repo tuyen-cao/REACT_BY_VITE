@@ -1,6 +1,4 @@
 export * from './cart-total'
-export * from './check-out-form'
-export * from './payment-method-form'
 export * from './promo-code'
 export * from './product-section'
 export * from './shopping-cart-products-table'

@@ -1,5 +1,4 @@
 import { CheckboxField, InputField } from '@/components/form-controls';
-import BlackButton from '@/components/form-controls/black-button';
 import { EMAIL, EMPTY_STRING, ERROR_ADDRESS, ERROR_CITY, ERROR_COUNTRY, ERROR_FIRST_NAME, ERROR_LAST_NAME, ERROR_REQUIRED, ERROR_STATE, PHONE_NUMBER } from '@/constants';
 import { CheckoutPayload } from '@/models';
 import { useEffect, useRef } from 'react';
@@ -14,7 +13,7 @@ interface CheckoutFormProps {
 
 export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps) => {
     const formRef = useRef<HTMLFormElement>()
-    const { control, formState: { errors }, handleSubmit } = useForm<CheckoutPayload>({
+    const { control, formState: { errors, isValid }, handleSubmit } = useForm<CheckoutPayload>({
         reValidateMode: "onSubmit",
         shouldUseNativeValidation: true,
         defaultValues: {
@@ -33,11 +32,10 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
         }
     })
     useEffect(() => {
-
-        if (isSubmited > 0 && formRef.current) {
-            formRef.current.requestSubmit();
+        if (isSubmited > 0 && formRef.current || isValid) {
+            formRef.current?.requestSubmit();
         }
-    }, [isSubmited])
+    }, [isSubmited, isValid])
 
     const onSubmit = (payload: CheckoutPayload) => {
         handleFormSubmit?.(payload)
