@@ -1,45 +1,53 @@
 import { CheckboxField, InputField } from '@/components/form-controls';
+import BlackButton from '@/components/form-controls/black-button';
 import { EMAIL, EMPTY_STRING, ERROR_ADDRESS, ERROR_CITY, ERROR_COUNTRY, ERROR_FIRST_NAME, ERROR_LAST_NAME, ERROR_REQUIRED, ERROR_STATE, PHONE_NUMBER } from '@/constants';
+import { CheckoutPayload } from '@/models';
+import { useEffect, useRef } from 'react';
 import { Controller } from 'react-hook-form';
-//import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
 
 
 interface CheckoutFormProps {
-    infoForm: any
+    handleFormSubmit: (payload: CheckoutPayload) => void,
+    isSubmited: number
 }
 
-export const CheckoutForm = ({ infoForm }: CheckoutFormProps) => {
-    /* const [langChange, setLangChange] = useState(false)
-    const { t, i18n } = useTranslation(); */
+export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps) => {
+    const formRef = useRef<HTMLFormElement>()
+    const { control, formState, handleSubmit } = useForm<CheckoutPayload>({
+        reValidateMode: "onSubmit",
+        shouldUseNativeValidation: true,
+        defaultValues: {
+            firstName: "string",
+            lastName: "string",
+            country: "string",
+            address: "string",
+            addressapartment: "string",
+            city: "string",
+            state: "string",
+            zipcode: "string",
+            phone: "string",
+            email: "string",
+            acc: "string",
+            diffAcc: "string"
+        }
+    })
+    const { errors } = formState
 
-    const { control, formState: { errors } } = infoForm
+    useEffect(() => {
 
-    /* const changeLanguage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (isSubmited > 0 && formRef.current) {
+            formRef.current.requestSubmit();
+        }
+    }, [isSubmited])
 
-        i18n.changeLanguage(event.target.value);
-        setLangChange(true)
-
-    }; */
-    /*  useEffect(() => {
-         if (Object.keys(errors).length > 0) {
-             setError("firstName", {
-                 types: {
-                     type: "manual",
-                     message: "aaaaa"
-                 }
-             });
-             setLangChange(false)
-         }
- 
-     }, [setError, t, errors]) */
+    const onSubmit = (payload: CheckoutPayload) => {
+        handleFormSubmit?.(payload)
+    }
     return (
         <>
-            {/*    <div onChange={changeLanguage}>
-                <input type="radio" value="en" name="language" defaultChecked /> English
 
-                <input type="radio" value="vn" name="language" /> VN
-            </div> */}
-            <form name="frmCheckout" className="was-validated" >
+            <form ref={formRef} name="frmCheckout" className="was-validated" onSubmit={handleSubmit(onSubmit)} >
                 {/*  <button type='submit' >SUBMIT</button> */}
 
                 <h6 className="checkout__title">Billing Details</h6>

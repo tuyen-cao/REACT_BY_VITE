@@ -5,20 +5,20 @@ import { WithQuestionLink } from "@/features/products/hocs";
 import BlackButton from "@/components/form-controls/black-button";
 import { CheckoutPayload } from "@/models";
 import { useForm } from 'react-hook-form';
-
+import { PaymentMethodForm } from "@/features/products/components/payment-method-form";
+import { useState } from 'react'
 
 const PromoCodeWithLink = WithQuestionLink(PromoCode)
 
 export default function Checkout() {
     const basketItems = useSelector(getAllProductsInCart)
-    const infoForm = useForm<CheckoutPayload>({
-        reValidateMode: "onSubmit",
-        shouldUseNativeValidation: true
-    })
-
+    const [submitedCount, setSubmited] = useState(0)
+    const handleFormSubmit = (payload: CheckoutPayload) => {
+        console.log(payload)
+        setSubmited(0)
+    }
     const handleCheckout = () => {
-        infoForm.trigger()
-        if (infoForm.formState.isValid) console.log(infoForm.getValues())
+        setSubmited((submitedCount) => submitedCount + 1)
     }
     return (
         < section className="spad" >
@@ -27,7 +27,7 @@ export default function Checkout() {
                     <div className="row">
                         <div className="col-lg-8 col-md-6" >
                             <PromoCodeWithLink hasRef />
-                            <CheckoutForm infoForm={infoForm} />
+                            <CheckoutForm isSubmited={submitedCount} handleFormSubmit={handleFormSubmit} />
                         </div>
                         <div className="col-lg-4 col-md-6">
                             <div className="checkout__order">
@@ -61,35 +61,8 @@ export default function Checkout() {
                                     Lorem ipsum dolor sit amet, consectetur adip elit, sed do
                                     eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                 </p>
-                                <form name="frmPaymentMethod" className="was-validated">
-                                    <div className="checkout__input-checkbox">
-                                        <label>Credit Card
-                                            <input
-                                                name="paymentmethod"
-                                                type="radio"
-                                                required
-                                                id='paymentmethodCredit'
-                                                value="Credit card"
-                                               /*  onChange={formikPaymentMethod.handleChange}  */ />
-                                            <span className="checkmark"></span></label>
-                                    </div>
-                                    <div className="checkout__input-checkbox">
-                                        <label>Paypal
-                                            <input
-                                                name="paymentmethod"
-                                                type="radio"
-                                                required
-                                                id='paymentmethodPaypal'
-                                                value="Paypal"
-                                                /* onChange={formikPaymentMethod.handleChange} */ />
-                                            <span className="checkmark"></span></label>
-                                    </div>
-                                    {/* {formikPaymentMethod.errors.paymentmethod && formikPaymentMethod.errors.paymentmethod && (
-                                        <div className='invalid-feedback'>{formikPaymentMethod.errors.paymentmethod}</div>
-                                    )} */}
-                                </form>
-
-                                <BlackButton type="button" cssClass='site-btn' handleClick={handleCheckout}>
+                                <PaymentMethodForm isSubmited={submitedCount} />
+                                <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
                                     <>PLACE ORDER</>
                                 </BlackButton>
                             </div>
