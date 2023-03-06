@@ -70,11 +70,12 @@ export const CheckoutForm = ({ isSubmited, handleFormSubmit }: CheckoutFormProps
                                         label='Fist Name <span>*</span>'
                                         placeholder='First Name'
                                         name="firstName"
+                                        isFocus={false}
 
                                         onBlur={onBlur} // notify when input is touched
                                         onChange={onChange} // send value to hook form
                                         inputRef={ref}
-                                        value={value} isFocus={false} />
+                                        value={value} />
                                 )}
                             />
                             <div className="invalid-feedback">{errors?.firstName?.message}</div>
