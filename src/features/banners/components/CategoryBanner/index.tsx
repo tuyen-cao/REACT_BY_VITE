@@ -23,7 +23,6 @@ const bannerList = [
     }
 ]
 export function CategoryBanner() {
-    console.log(bannerList);
     return (
         <>
             {bannerList.length &&

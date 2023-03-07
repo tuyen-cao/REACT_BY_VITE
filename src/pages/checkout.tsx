@@ -34,7 +34,7 @@ export default function Checkout() {
     }
     useEffect(() => {
         if (paymentMethod !== "" && Object.values(checkoutInfo).length > 0) {
-            console.log({ ...checkoutInfo, paymentMethod: paymentMethod })
+
             // store user infor + product info + total 
 
         }

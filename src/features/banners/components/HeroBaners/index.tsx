@@ -54,12 +54,6 @@ export function HeroBanners() {
                 prevItem?.classList.remove('owl-animated-out')
                 prevItem?.classList.remove('fadeOut')
             }, 1000)
-
-
-
-            //currentItem?.classList.remove('owl-animated-out')
-            //currentItem?.classList.remove('fadeOut')
-            console.log(prevItem)
         }
     }, [activeBanner])
 
