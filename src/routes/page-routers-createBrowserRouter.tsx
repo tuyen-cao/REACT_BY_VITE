@@ -1,9 +1,7 @@
 
 import App from '@/App';
 import { ErrorBoundaryRouter } from '@/components/common';
-
 import { shopLoader, shoppingCartLoader } from '@/features/products/loaders';
-import { ErrorFallback, myErrorHandler } from '@/utilities';
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import LazyLoadRoutes from './lazy-load-routes';
 
