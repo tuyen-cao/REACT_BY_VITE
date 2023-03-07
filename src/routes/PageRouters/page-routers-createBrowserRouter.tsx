@@ -12,7 +12,7 @@ export const router = createBrowserRouter(
         <Route path='/' element={<App />}>
             <Route
                 index
-                element={LazyLoadRoutes('home')}
+                element={LazyLoadRoutes('Home')}
                 errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='shops'
@@ -20,7 +20,7 @@ export const router = createBrowserRouter(
             >
                 <Route
                     index
-                    element={LazyLoadRoutes('shops')}
+                    element={LazyLoadRoutes('Shops')}
                     loader={
                         () => {
                             return shopLoader()
@@ -32,7 +32,7 @@ export const router = createBrowserRouter(
                     element={LazyLoadRoutes('shop-detail')} />
                 <Route
                     path='shopping-cart'
-                    element={LazyLoadRoutes('shopping-cart')}
+                    element={LazyLoadRoutes('ShoppingCart')}
                     loader={
                         () => {
                             return shoppingCartLoader()
@@ -45,7 +45,7 @@ export const router = createBrowserRouter(
                 errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='checkout'
-                element={LazyLoadRoutes('checkout')}
+                element={LazyLoadRoutes('Checkout')}
                 errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='blogs'

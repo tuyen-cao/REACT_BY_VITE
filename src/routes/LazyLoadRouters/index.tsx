@@ -4,7 +4,7 @@ import React, { lazy, Suspense } from "react"
 
 
 export default function LazyLoadRoutes(componentName: string) {
-    const LazyElement = lazy(() => import(`../pages/${componentName}.tsx`));
+    const LazyElement = lazy(() => import(`../../pages/${componentName}.tsx`));
 
     // Wrapping around the suspense component is mandatory
     return (

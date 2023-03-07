@@ -2,7 +2,7 @@ import { ComponentType, useState } from 'react'
 
 export function WithQuestionLink<T>(Component: ComponentType<T>) {
     // eslint-disable-next-line react/display-name
-    const fnc = (hocProps: T) => {
+    const WithQuestionLinkComponent = (hocProps: React.PropsWithChildren<T>) => {
         const [isShowPromoCode, setShowPromoCode] = useState(false)
 
         const handleClick = () => {
@@ -10,7 +10,7 @@ export function WithQuestionLink<T>(Component: ComponentType<T>) {
         }
         return (
             <>
-                {isShowPromoCode && <Component {...hocProps as T} />}
+                {isShowPromoCode && <Component {...hocProps} />}
                 {!isShowPromoCode && <h6 className="coupon__code" >
                     <span className="icon_tag_alt" /> Have a coupon?{" "}
                     <button className='btn btn-link' onClick={handleClick}>Click here</button> to enter your code
@@ -18,5 +18,5 @@ export function WithQuestionLink<T>(Component: ComponentType<T>) {
             </>
         )
     }
-    return fnc
+    return WithQuestionLinkComponent
 }
