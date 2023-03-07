@@ -1,7 +1,7 @@
-import "./assets/css/font-awesome.min.css"
-import './assets/css/elegant-icons.css'
-import "./assets/css/magnific-popup.css"
-import "./assets/css/nice-select.css"
+import "./assets/css/fontAwesome.min.css"
+import './assets/css/elegantIcons.css'
+import "./assets/css/magnificPopup.css"
+import "./assets/css/niceSelect.css"
 import "./assets/css/owl.carousel.min.css"
 import "./assets/css/slicknav.min.css"
 
