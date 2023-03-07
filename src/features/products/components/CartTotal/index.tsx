@@ -1,8 +1,8 @@
 import { formatCurrency } from '@/utilities';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { getDiscount, getSubtotal, getTotal } from '../slice';
-import { RootState } from '@/redux/store'
+import { getDiscount, getSubtotal, getTotal } from '../../slice';
+import { RootState } from '@/redux/Store'
 
 export function CartTotal() {
     const subtotal = useSelector(getSubtotal)

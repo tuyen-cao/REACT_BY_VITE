@@ -2,12 +2,12 @@ import { CartTotal, PromoCode } from "@/features/products/components";
 import { getAllProductsInCart } from "@/features/products/slice";
 import { useSelector } from "react-redux";
 import { WithQuestionLink } from "@/features/products/hocs";
-import BlackButton from "@/components/form-controls/black-button";
+import BlackButton from "@/components/form-controls/BlackButton";
 import { CheckoutPayload } from "@/models";
 import { useState, useEffect } from 'react'
 import { CheckoutForm, PaymentMethodForm } from "@/features/products/components/forms";
 import { PAYMENT_METHOD } from "@/constants";
-import PaypalButton from "@/features/products/components/forms/paypal-button";
+import PaypalButton from "@/features/products/components/forms/PaypalButton";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback, myErrorHandler } from "@/utilities";
 

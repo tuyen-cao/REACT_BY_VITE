@@ -1,4 +1,5 @@
-import PagePreloder from "@/components/common/page-preloder";
+
+import { PagePreloder } from "@/components/common";
 import React, { lazy, Suspense } from "react"
 
 

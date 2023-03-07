@@ -8,7 +8,7 @@ import "./assets/css/slicknav.min.css"
 import './sass/style.scss'
 import { Outlet, useNavigation } from "react-router-dom"
 import { MainLayout } from "./components/layout"
-import PagePreloder from "./components/common/page-preloder"
+import { PagePreloder } from "./components/common"
 
 function App() {
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import SearchSwitch from './search-switch';
-import ShoppingCartLink from './shopping-cart-link';
+import SearchSwitch from '../SearchSwitch';
+import ShoppingCartLink from '../ShoppingCartLink';
 
 
 export default function HeaderNavOption() {

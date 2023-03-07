@@ -1,9 +1,9 @@
-import BlackButton from '@/components/form-controls/black-button';
+import BlackButton from '@/components/form-controls/BlackButton';
 import { BasketItem } from '@/models';
 import { useDispatch } from 'react-redux';
 
 import { Link } from 'react-router-dom';
-import { updateCart } from '../slice';
+import { updateCart } from '../../slice';
 
 export interface ShoppingCartTableActionsProps {
     basketItems: BasketItem[],

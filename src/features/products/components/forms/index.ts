@@ -1,2 +1,2 @@
-export * from './check-out-form'
-export * from './payment-method-form'
+export * from './Checkout'
+export * from './PaymentMethod'

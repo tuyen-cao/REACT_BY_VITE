@@ -1,5 +1,5 @@
 import React from 'react'
-const PagePreloder = () => {
+export const PagePreloder = () => {
   return (
     <div id="preloder">
       <div className="loader" />
@@ -7,4 +7,3 @@ const PagePreloder = () => {
   )
 }
 
-export default PagePreloder

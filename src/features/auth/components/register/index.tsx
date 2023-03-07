@@ -1,5 +1,5 @@
 import { LoginPayload } from '@/models'
-import RegisterForm from '../register-form'
+import RegisterForm from '../RegisterForm'
 
 
 export default function Register() {

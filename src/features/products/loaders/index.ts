@@ -1,2 +1,2 @@
-export * from './shop-loader'
-export * from './shopping-cart-loader'
+export * from './shopLoader'
+export * from './shoppingCartLoader'

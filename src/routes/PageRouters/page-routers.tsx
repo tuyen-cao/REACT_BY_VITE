@@ -1,7 +1,7 @@
 
-import { ErrorBoundary, ErrorBoundaryRouter } from '@/components/common';
+import { ErrorBoundaryRouter } from '@/components/common';
 import { Route, Routes } from 'react-router-dom';
-import LazyLoadRoutes from './lazy-load-routes';
+import LazyLoadRoutes from '../LazyLoadRouters';
 
 
 export const PageRouters = () => {

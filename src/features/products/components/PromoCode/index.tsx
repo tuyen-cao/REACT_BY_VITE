@@ -1,5 +1,5 @@
 import { InputField } from '@/components/form-controls';
-import BlackButton from '@/components/form-controls/black-button';
+import BlackButton from '@/components/form-controls/BlackButton';
 import { getPromoCode } from '@/services';
 import { useFormik } from 'formik';
 import { useCallback, useEffect, useState } from 'react';

@@ -1,6 +1,6 @@
 
-import { Footer } from '../common';
-import Header from '../header';
+import { Footer } from '../../common';
+import Header from '../../header';
 
 
 interface MainLayoutProps {

@@ -3,9 +3,9 @@ import { BasketItem, ProductItemType } from "@/models";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoaderData } from "react-router-dom";
-import { filterProductsQuery, shoppingCartLoader } from "../loaders";
-import { productIdsAsString, removeItem } from "../slice";
-import ProductItemInCart from "./product-item-in-cart";
+import { filterProductsQuery, shoppingCartLoader } from "../../loaders";
+import { productIdsAsString, removeItem } from "../../slice";
+import ProductItemInCart from "../ProductItemInCart";
 
 export interface ShoppingCartProductsTableProps {
     products: BasketItem[],

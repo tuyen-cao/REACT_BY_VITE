@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import HeroBannerItem from './hero-banner-item';
+import HeroBannerItem from './Item';
 
 const bannerList = [
     {

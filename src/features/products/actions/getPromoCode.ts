@@ -1,6 +1,6 @@
 import { ActionFunctionArgs } from "react-router-dom";
 
-export const GetPromoCode = async ({ request }: ActionFunctionArgs) => {
+export const getPromoCode = async ({ request }: ActionFunctionArgs) => {
     const formData = await request.formData();
     const values = Object.fromEntries(formData);
 

@@ -1,9 +1,9 @@
 import { BasketItem } from "@/models";
 import { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { getAllProductsInCart } from "../slice";
-import { ShoppingCartProductsTable } from "./shopping-cart-products-table";
-import { ShoppingCartTableActions } from "./shopping-cart-table-actions";
+import { getAllProductsInCart } from "../../slice";
+import { ShoppingCartProductsTable } from "./ProductsTable";
+import { ShoppingCartTableActions } from "./TableActions";
 
 export function ShoppingCartTable() {
     const basketItems = useSelector(getAllProductsInCart)

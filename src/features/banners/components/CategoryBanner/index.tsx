@@ -1,5 +1,5 @@
 
-import CategoryItem from './banner-item';
+import CategoryItem from './Item';
 
 
 
