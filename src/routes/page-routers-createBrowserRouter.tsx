@@ -1,7 +1,9 @@
 
 import App from '@/App';
-import { ErrorBoundary } from '@/components/common';
+import { ErrorBoundaryRouter } from '@/components/common';
+
 import { shopLoader, shoppingCartLoader } from '@/features/products/loaders';
+import { ErrorFallback, myErrorHandler } from '@/utilities';
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import LazyLoadRoutes from './lazy-load-routes';
 
@@ -12,10 +14,10 @@ export const router = createBrowserRouter(
             <Route
                 index
                 element={LazyLoadRoutes('home')}
-                errorElement={<ErrorBoundary />} />
+                errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='shops'
-                errorElement={<ErrorBoundary />}
+                errorElement={<ErrorBoundaryRouter />}
             >
                 <Route
                     index
@@ -41,14 +43,14 @@ export const router = createBrowserRouter(
             <Route
                 path='contact'
                 element={LazyLoadRoutes('contact')}
-                errorElement={<ErrorBoundary />} />
+                errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='checkout'
                 element={LazyLoadRoutes('checkout')}
-                errorElement={<ErrorBoundary />} />
+                errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='blogs'
-                errorElement={<ErrorBoundary />} >
+                errorElement={<ErrorBoundaryRouter />} >
                 <Route
                     index
                     element={LazyLoadRoutes('blogs')} />

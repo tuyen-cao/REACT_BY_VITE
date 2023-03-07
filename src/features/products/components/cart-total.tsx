@@ -1,4 +1,4 @@
-import { formatCurrency } from '@/ultilities';
+import { formatCurrency } from '@/utilities';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { getDiscount, getSubtotal, getTotal } from '../slice';

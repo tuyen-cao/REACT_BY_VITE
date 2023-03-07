@@ -8,6 +8,8 @@ import { useState, useEffect } from 'react'
 import { CheckoutForm, PaymentMethodForm } from "@/features/products/components/forms";
 import { PAYMENT_METHOD } from "@/constants";
 import PaypalButton from "@/features/products/components/forms/paypal-button";
+import { ErrorBoundary } from "react-error-boundary";
+import { ErrorFallback, myErrorHandler } from "@/utilities";
 
 const PromoCodeWithLink = WithQuestionLink(PromoCode)
 
@@ -31,7 +33,6 @@ export default function Checkout() {
         setSubmited((submitedCount) => submitedCount + 1)
     }
     useEffect(() => {
-
         if (paymentMethod !== "" && Object.values(checkoutInfo).length > 0) {
             console.log({ ...checkoutInfo, paymentMethod: paymentMethod })
             // store user infor + product info + total 
@@ -80,25 +81,26 @@ export default function Checkout() {
                                     eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                 </p>
                                 <PaymentMethodForm isSubmited={submitedCount} handleFormSubmit={handlePaymentFormSubmit} />
+                                <ErrorBoundary FallbackComponent={ErrorFallback}
+                                    onError={myErrorHandler} >
 
+                                    {paymentMethod !== PAYMENT_METHOD.PAYPAL
+                                        && <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
+                                            <>PLACE ORDER</>
+                                        </BlackButton>
+                                    }
 
-                                {paymentMethod !== PAYMENT_METHOD.PAYPAL
-                                    && <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
-                                        <>PLACE ORDER</>
-                                    </BlackButton>
-                                }
+                                    {paymentMethod === PAYMENT_METHOD.PAYPAL
+                                        && Object.values(checkoutInfo).length > 0
+                                        && <PaypalButton />}
 
-                                {paymentMethod === PAYMENT_METHOD.PAYPAL
-                                    && Object.values(checkoutInfo).length > 0
-                                    && <PaypalButton />}
+                                    {paymentMethod === PAYMENT_METHOD.PAYPAL
+                                        && Object.values(checkoutInfo).length === 0
+                                        && <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
+                                            <>PLACE ORDER</>
+                                        </BlackButton>}
 
-                                {paymentMethod === PAYMENT_METHOD.PAYPAL
-                                    && Object.values(checkoutInfo).length === 0
-                                    && <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
-                                        <>PLACE ORDER</>
-                                    </BlackButton>}
-
-
+                                </ErrorBoundary>
                             </div>
                         </div>
                     </div>

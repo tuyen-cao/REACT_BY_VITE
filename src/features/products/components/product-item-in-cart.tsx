@@ -1,5 +1,5 @@
 import { BasketItem, ProductItemType } from '@/models';
-import { formatCurrency } from '@/ultilities';
+import { formatCurrency } from '@/utilities';
 import { useEffect, useState, ChangeEvent } from 'react';
 import styled from 'styled-components'
 import { useCallback } from 'react';

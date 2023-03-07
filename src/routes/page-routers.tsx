@@ -1,5 +1,5 @@
 
-import { ErrorBoundary } from '@/components/common';
+import { ErrorBoundary, ErrorBoundaryRouter } from '@/components/common';
 import { Route, Routes } from 'react-router-dom';
 import LazyLoadRoutes from './lazy-load-routes';
 
@@ -10,10 +10,10 @@ export const PageRouters = () => {
             <Route
                 index
                 element={LazyLoadRoutes('home')}
-                errorElement={<ErrorBoundary />} />
+                errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='shops'
-                errorElement={<ErrorBoundary />}>
+                errorElement={<ErrorBoundaryRouter />}>
                 <Route
                     index
                     element={LazyLoadRoutes('shops')} />
@@ -27,14 +27,14 @@ export const PageRouters = () => {
             <Route
                 path='contact'
                 element={LazyLoadRoutes('contact')}
-                errorElement={<ErrorBoundary />} />
+                errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='checkout'
                 element={LazyLoadRoutes('checkout')}
-                errorElement={<ErrorBoundary />} />
+                errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='blogs'
-                errorElement={<ErrorBoundary />} >
+                errorElement={<ErrorBoundaryRouter />} >
                 <Route
                     index
                     element={LazyLoadRoutes('blogs')} />

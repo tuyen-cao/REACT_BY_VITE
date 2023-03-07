@@ -1,6 +1,6 @@
 
 import { getTotal, numOfProducts } from '@/features/products/slice';
-import { formatCurrency } from '@/ultilities';
+import { formatCurrency } from '@/utilities';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
