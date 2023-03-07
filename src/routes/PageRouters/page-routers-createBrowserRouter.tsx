@@ -5,6 +5,14 @@ import { shopLoader, shoppingCartLoader } from '@/features/products/loaders';
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import LazyLoadRoutes from '../LazyLoadRouters';
 
+const homePage = "../../pages/Home/index.tsx";
+const shopsPage = "../../pages/Shops/index.tsx";
+const shopDetailPage = "../../pages/ShopDetail/index.tsx";
+const shoppingCartPage = "../../pages/ShoppingCart/index.tsx";
+const contactPage = "../../pages/Contact/index.tsx";
+const checkoutPage = "../../pages/Checkout/index.tsx";
+const blogsPage = "../../pages/Blogs/index.tsx";
+const blogDetailPage = "../../pages/BlogDetail/index.tsx";
 
 
 export const router = createBrowserRouter(
@@ -12,7 +20,7 @@ export const router = createBrowserRouter(
         <Route path='/' element={<App />}>
             <Route
                 index
-                element={LazyLoadRoutes('Home')}
+                element={LazyLoadRoutes(homePage)}
                 errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='shops'
@@ -20,7 +28,7 @@ export const router = createBrowserRouter(
             >
                 <Route
                     index
-                    element={LazyLoadRoutes('Shops')}
+                    element={LazyLoadRoutes(shopsPage)}
                     loader={
                         () => {
                             return shopLoader()
@@ -29,10 +37,10 @@ export const router = createBrowserRouter(
                 />
                 <Route
                     path='shop-details'
-                    element={LazyLoadRoutes('shop-detail')} />
+                    element={LazyLoadRoutes(shopDetailPage)} />
                 <Route
                     path='shopping-cart'
-                    element={LazyLoadRoutes('ShoppingCart')}
+                    element={LazyLoadRoutes(shoppingCartPage)}
                     loader={
                         () => {
                             return shoppingCartLoader()
@@ -41,21 +49,21 @@ export const router = createBrowserRouter(
             </Route>
             <Route
                 path='contact'
-                element={LazyLoadRoutes('contact')}
+                element={LazyLoadRoutes(contactPage)}
                 errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='checkout'
-                element={LazyLoadRoutes('Checkout')}
+                element={LazyLoadRoutes(checkoutPage)}
                 errorElement={<ErrorBoundaryRouter />} />
             <Route
                 path='blogs'
                 errorElement={<ErrorBoundaryRouter />} >
                 <Route
                     index
-                    element={LazyLoadRoutes('blogs')} />
+                    element={LazyLoadRoutes(blogsPage)} />
                 <Route
                     path='blog-details'
-                    element={LazyLoadRoutes('blog-detail')} />
+                    element={LazyLoadRoutes(blogDetailPage)} />
             </Route>
         </Route>
     ))
