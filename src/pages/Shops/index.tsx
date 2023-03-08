@@ -1,5 +1,7 @@
+import { ProductItemProps } from '@/components/products';
 import { ProductSection } from '@/features/products/components';
 import { ProductListQuery, shopLoader } from '@/features/products/loaders';
+import { ProductItemType } from '@/models';
 import { useQuery } from 'react-query';
 import { useLoaderData } from 'react-router-dom';
 
@@ -7,11 +9,12 @@ export default function Shops() {
     const initialData = useLoaderData() as Awaited<
         ReturnType<ReturnType<typeof shopLoader>>
     >;
-    const { data: productList } = useQuery({
+
+    const { data } = useQuery({
         ...ProductListQuery(),
         initialData: initialData,
     });
-
+    const productList = data as ProductItemType[];
     return (
         <>
             <section className="shop spad">

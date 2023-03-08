@@ -11,11 +11,11 @@ export const ProductListQuery = () => ({
 export const shopLoader = () =>
     async () => {
         const queryClient = useQueryClient()
-        console.log(queryClient.getQueryData(ProductListQuery().queryKey))
-        if (!queryClient.getQueryData(ProductListQuery().queryKey)) {
-            await queryClient.fetchQuery(ProductListQuery());
-        }
-
+        const productListQuery = ProductListQuery()
+        return (
+            queryClient.getQueryData(productListQuery.queryKey) ??
+            (await queryClient.fetchQuery(productListQuery))
+        )
     };
 
 
