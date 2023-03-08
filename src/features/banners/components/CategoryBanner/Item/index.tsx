@@ -1,5 +1,5 @@
 import { NUMBER_BANNER_ITEMS } from '@/constants';
-import { CatBannerProps } from '@/models/Banner/banner';
+import { CatBannerProps } from '@/models/Banner';
 import { Link } from 'react-router-dom';
 
 export interface CategoryItemProps {
