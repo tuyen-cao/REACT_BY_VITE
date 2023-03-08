@@ -11,6 +11,7 @@ export default function Shops() {
         ...ProductListQuery(),
         initialData: initialData,
     });
+
     return (
         <>
             <section className="shop spad">

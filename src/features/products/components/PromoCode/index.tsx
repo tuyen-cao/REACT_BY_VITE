@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { appplyPromoCode } from '@/features/products/slice';
-import { PromoCodeFormErrors } from '@/models';
+import { PromoCodeFormErrors, PromoCodeProps } from '@/models';
 
 const validate = (values: { promoCode: string }) => {
     const errors: PromoCodeFormErrors = {};
@@ -34,6 +34,7 @@ export function PromoCode({ hasRef = false }: { hasRef?: boolean }) {
             },
         }
     );
+    const promoCodes = data as PromoCodeProps[];
     const formik = useFormik({
         initialValues: {
             promoCode: '',
@@ -46,15 +47,15 @@ export function PromoCode({ hasRef = false }: { hasRef?: boolean }) {
 
     const applyPromoCode = useCallback(() => {
         if (isSuccess) {
-            dispatch(appplyPromoCode(data[0].value));
+            dispatch(appplyPromoCode(promoCodes[0].value));
         }
-    }, [data, dispatch, isSuccess]);
+    }, [promoCodes, dispatch, isSuccess]);
 
     useEffect(() => {
         if (!formik.isValid)
             document.getElementById(Object.keys(formik.errors)[0])?.focus();
-        if (isSuccess && data !== null) applyPromoCode();
-    }, [applyPromoCode, data, formik.errors, formik.isValid, isSuccess]);
+        if (isSuccess && promoCodes !== null) applyPromoCode();
+    }, [applyPromoCode, promoCodes, formik.errors, formik.isValid, isSuccess]);
 
     return (
         <div className={'was-validated cart__discount'}>
@@ -82,7 +83,7 @@ export function PromoCode({ hasRef = false }: { hasRef?: boolean }) {
                 ) : (
                     <>
                         {' '}
-                        {data?.length === 0 && formik.submitCount > 0 && (
+                        {promoCodes?.length === 0 && formik.submitCount > 0 && (
                             <div className="invalid-feedback">
                                 Coupon code is not valid
                             </div>
