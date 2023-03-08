@@ -19,7 +19,7 @@ const PromoCodeWithLink = WithQuestionLink(PromoCode);
 export default function Checkout() {
     const basketItems = useSelector(getAllProductsInCart);
     const [submitedCount, setSubmited] = useState(0);
-    const [checkoutInfo, setCheckoutInfo] = useState<CheckoutPayload>({});
+    const [checkoutInfo, setCheckoutInfo] = useState({});
     const [paymentMethod, setPaymentMethod] = useState('');
 
     const handleFormSubmit = (payload: CheckoutPayload) => {
