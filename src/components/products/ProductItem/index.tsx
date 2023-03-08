@@ -1,5 +1,6 @@
 import { PRODUCTTYPES } from '@/constants';
 import { ProductItemType } from '@/models';
+
 import { formatCurrency } from '@/utilities';
 import styled from 'styled-components';
 import { RatingBlock } from '../Rating';
