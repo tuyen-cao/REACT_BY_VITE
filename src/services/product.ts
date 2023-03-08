@@ -1,5 +1,5 @@
 import { API_CONSTANTS, REQUEST_METHOD } from "@/constants";
-import { request } from "@/utilities/Axios";
+import { request } from "@/utilities";
 
 export const getAllProducts = async () => {
     return await request({
