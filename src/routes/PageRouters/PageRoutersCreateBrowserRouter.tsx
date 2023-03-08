@@ -9,14 +9,16 @@ import {
 } from 'react-router-dom';
 import LazyLoadComponent from '../../components/common/LazyLoadComponent';
 
-const homePage = '/pages/Home/index.tsx';
-const shopsPage = '/pages/Shops/index.tsx';
-const shopDetailPage = '/pages/ShopDetail/index.tsx';
-const shoppingCartPage = '/pages/ShoppingCart/index.tsx';
-const contactPage = '/pages/Contact/index.tsx';
-const checkoutPage = '/pages/Checkout/index.tsx';
-const blogsPage = '/pages/Blogs/index.tsx';
-const blogDetailPage = '/pages/BlogDetail/index.tsx';
+const pagesDirectory = '../../../pages';
+
+const homePage = `${pagesDirectory}/Home/index.tsx`;
+const shopsPage = `${pagesDirectory}/Shops/index.tsx`;
+const shopDetailPage = `${pagesDirectory}/ShopDetail/index.tsx`;
+const shoppingCartPage = `${pagesDirectory}/ShoppingCart/index.tsx`;
+const contactPage = `${pagesDirectory}/Contact/index.tsx`;
+const checkoutPage = `${pagesDirectory}/Checkout/index.tsx`;
+const blogsPage = `${pagesDirectory}/Blogs/index.tsx`;
+const blogDetailPage = `${pagesDirectory}/BlogDetail/index.tsx`;
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
