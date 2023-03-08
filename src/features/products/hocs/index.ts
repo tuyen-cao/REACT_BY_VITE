@@ -1,1 +1,1 @@
-export * from './with-question-link'
+export * from './withQuestionLink'

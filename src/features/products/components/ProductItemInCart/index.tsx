@@ -38,11 +38,11 @@ export default function ProductItemInCart({
     }, [product.quantity]);
     return (
         <TableRowStyled>
-            <td className="product__cart__item">
-                <div className="product__cart__item__pic">
+            <td className="cart-item">
+                <div className="cart-item__pic">
                     <img src={productInfor?.image} alt="" />
                 </div>
-                <div className="product__cart__item__text">
+                <div className="cart-item__text">
                     <h6>{productInfor?.title}</h6>
                     <h5>{formatCurrency.format(product.price)}</h5>
                 </div>
@@ -77,7 +77,7 @@ export default function ProductItemInCart({
 }
 
 const TableRowStyled = styled.tr`
-    .product__cart__item__pic {
+    .cart-item__pic {
         max-width: 90px;
     }
 `;

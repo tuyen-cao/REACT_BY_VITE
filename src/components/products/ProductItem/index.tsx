@@ -13,7 +13,7 @@ export function ProductItem({ product, addToCart }: ProductItemProps) {
         addToCart?.(product.id);
     };
     return (
-        <ProductItemStyled className="product__item">
+        <ProductItemStyled className="product-item">
             <ThumbnailStyled className="product-item__pic set-bg">
                 {' '}
                 <Thumbnail alt={product.title} src={product.image} />
