@@ -1,4 +1,4 @@
-import { HeroBanner } from '@/models/Banner';
+import { HeroBanner } from '@/models/Banner/banner';
 import clsx from 'clsx';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
