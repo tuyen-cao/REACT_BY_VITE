@@ -40,7 +40,29 @@ export default function Checkout() {
             // store user infor + product info + total
         }
     }, [checkoutInfo, paymentMethod]);
-
+    const renderPlaceOrderButton = () => {
+        if (
+            paymentMethod !== PAYMENT_METHOD.PAYPAL ||
+            (paymentMethod === PAYMENT_METHOD.PAYPAL &&
+                Object.values(checkoutInfo).length === 0)
+        )
+            return (
+                <BlackButton
+                    type="submit"
+                    cssClass="site-btn"
+                    handleClick={handleCheckout}
+                >
+                    <>PLACE ORDER</>
+                </BlackButton>
+            );
+    };
+    const renderPayPalButton = () => {
+        if (
+            paymentMethod === PAYMENT_METHOD.PAYPAL &&
+            Object.values(checkoutInfo).length > 0
+        )
+            return <PaypalButton />;
+    };
     return (
         <section className="spad">
             <div className="container">
@@ -115,32 +137,8 @@ export default function Checkout() {
                                     FallbackComponent={ErrorFallback}
                                     onError={myErrorHandler}
                                 >
-                                    {paymentMethod !==
-                                        PAYMENT_METHOD.PAYPAL && (
-                                        <BlackButton
-                                            type="submit"
-                                            cssClass="site-btn"
-                                            handleClick={handleCheckout}
-                                        >
-                                            <>PLACE ORDER</>
-                                        </BlackButton>
-                                    )}
-
-                                    {paymentMethod === PAYMENT_METHOD.PAYPAL &&
-                                        Object.values(checkoutInfo).length >
-                                            0 && <PaypalButton />}
-
-                                    {paymentMethod === PAYMENT_METHOD.PAYPAL &&
-                                        Object.values(checkoutInfo).length ===
-                                            0 && (
-                                            <BlackButton
-                                                type="submit"
-                                                cssClass="site-btn"
-                                                handleClick={handleCheckout}
-                                            >
-                                                <>PLACE ORDER</>
-                                            </BlackButton>
-                                        )}
+                                    {renderPlaceOrderButton()}
+                                    {renderPayPalButton()}
                                 </ErrorBoundary>
                             </div>
                         </div>
