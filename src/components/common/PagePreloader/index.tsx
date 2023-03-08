@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
 export const PagePreloder = () => {
-  return (
-    <div id="preloder">
-      <div className="loader" />
-    </div>
-  )
-}
-
+    return (
+        <div id="preloder">
+            <div className="loader" />
+        </div>
+    );
+};

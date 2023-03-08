@@ -4,8 +4,6 @@ import HeaderMenu from './Menu';
 import HeaderNavOption from './NavOptions';
 import HeaderTop from './Top';
 
-
-
 export default function Header() {
     return (
         <header className="header">

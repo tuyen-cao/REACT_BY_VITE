@@ -1,36 +1,34 @@
 import { PRODUCTTYPES } from '@/constants';
 import { ProductItemType } from '@/models';
 import { formatCurrency } from '@/utilities';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { RatingBlock } from '../Rating';
 
-
 export interface ProductItemProps {
-    product: ProductItemType,
-    addToCart?: (id: number) => void
+    product: ProductItemType;
+    addToCart?: (id: number) => void;
 }
 export function ProductItem({ product, addToCart }: ProductItemProps) {
     const handleClickAddToCart = () => {
-        addToCart?.(product.id)
-    }
+        addToCart?.(product.id);
+    };
     return (
         <ProductItemStyled className="product__item">
-            <ThumbnailStyled
-                className="product-item__pic set-bg"
-            >    <Thumbnail alt={product.title}
-                src={product.image} />
-                {product.type !== PRODUCTTYPES.BEST_SELLERS
-                    ? <span className="label">{product.type}</span>
-                    : null}
+            <ThumbnailStyled className="product-item__pic set-bg">
+                {' '}
+                <Thumbnail alt={product.title} src={product.image} />
+                {product.type !== PRODUCTTYPES.BEST_SELLERS ? (
+                    <span className="label">{product.type}</span>
+                ) : null}
                 <ul className="product__hover">
                     <li>
-                        <button >
+                        <button>
                             <img src="img/icon/heart.png" alt="" />
                         </button>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="img/icon/compare.png" alt="" />{" "}
+                            <img src="img/icon/compare.png" alt="" />{' '}
                             <span>Compare</span>
                         </a>
                     </li>
@@ -38,8 +36,10 @@ export function ProductItem({ product, addToCart }: ProductItemProps) {
             </ThumbnailStyled>
             <div className="product-item__text">
                 <h6>{product.title}</h6>
-                <AddToCartStyled className="add-cart"
-                    onClick={handleClickAddToCart}>
+                <AddToCartStyled
+                    className="add-cart"
+                    onClick={handleClickAddToCart}
+                >
                     + Add To Cart
                 </AddToCartStyled>
                 <RatingBlock rating={product.rating} />
@@ -82,8 +82,8 @@ const ProductItemStyled = styled.div`
         }
     }
     button {
-        border:0;
-        outline:0;
+        border: 0;
+        outline: 0;
         padding: 0;
         margin: 0;
         background: none;

@@ -1,10 +1,5 @@
 import * as React from 'react';
 
-
 export function Footer() {
-    return (
-        <div>
-            Footer
-        </div>
-    );
+    return <div>Footer</div>;
 }

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-
 export default function HeaderMenu() {
     return (
         <div className="col-lg-6 col-md-6">
@@ -21,7 +20,9 @@ export default function HeaderMenu() {
                                 <Link to="/about">About Us</Link>
                             </li>
                             <li>
-                                <Link to="/shops/shop-details">Shop Details</Link>
+                                <Link to="/shops/shop-details">
+                                    Shop Details
+                                </Link>
                             </li>
                             <li>
                                 <Link to="/shopping-cart">Shopping Cart</Link>
@@ -30,7 +31,9 @@ export default function HeaderMenu() {
                                 <Link to="/checkout">Check Out</Link>
                             </li>
                             <li>
-                                <Link to="/blogs/blog-details">Blog Details</Link>
+                                <Link to="/blogs/blog-details">
+                                    Blog Details
+                                </Link>
                             </li>
                         </ul>
                     </li>

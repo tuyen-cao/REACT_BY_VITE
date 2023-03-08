@@ -1,9 +1,5 @@
 import * as React from 'react';
 
 export default function PaypalButton() {
-    return (
-        <div>
-            PaypalButton
-        </div>
-    );
+    return <div>PaypalButton</div>;
 }

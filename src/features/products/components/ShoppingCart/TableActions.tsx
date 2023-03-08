@@ -6,26 +6,33 @@ import { Link } from 'react-router-dom';
 import { updateCart } from '../../slice';
 
 export interface ShoppingCartTableActionsProps {
-    basketItems: BasketItem[],
-    handleUpdateCart?: (basketItems: BasketItem[]) => void
+    basketItems: BasketItem[];
+    handleUpdateCart?: (basketItems: BasketItem[]) => void;
 }
 
-export function ShoppingCartTableActions({ basketItems }: ShoppingCartTableActionsProps) {
-    const dispatch = useDispatch()
+export function ShoppingCartTableActions({
+    basketItems,
+}: ShoppingCartTableActionsProps) {
+    const dispatch = useDispatch();
     const handleClickUpdateCart = () => {
-        dispatch(updateCart(basketItems))
-    }
+        dispatch(updateCart(basketItems));
+    };
     return (
         <div className="row">
             <div className="col-lg-6 col-md-6 col-sm-6">
                 <div className="continue__btn">
-                    <Link to='/shops'>Continue Shopping</Link>
+                    <Link to="/shops">Continue Shopping</Link>
                 </div>
             </div>
             <div className="col-lg-6 col-md-6 col-sm-6">
                 <div className="continue__btn update__btn">
-                    <BlackButton type={'submit'} handleClick={handleClickUpdateCart} >
-                        <><i className="fa fa-spinner" /> Update cart</>
+                    <BlackButton
+                        type={'submit'}
+                        handleClick={handleClickUpdateCart}
+                    >
+                        <>
+                            <i className="fa fa-spinner" /> Update cart
+                        </>
                     </BlackButton>
                 </div>
             </div>

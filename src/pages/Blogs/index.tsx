@@ -1,9 +1,3 @@
-
-
 export default function Blogs() {
-    return (
-        <>
-            Blogs
-        </>
-    )
+    return <>Blogs</>;
 }

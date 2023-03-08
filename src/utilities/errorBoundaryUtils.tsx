@@ -1,4 +1,3 @@
-
 export const ErrorFallback = ({ error, resetErrorBoundary }: any) => {
     return (
         <div role="alert">
@@ -6,8 +5,8 @@ export const ErrorFallback = ({ error, resetErrorBoundary }: any) => {
             <pre>{error.message}</pre>
             <button onClick={resetErrorBoundary}>Try again</button>
         </div>
-    )
-}
+    );
+};
 export const myErrorHandler = (error: Error) => {
-    console.log(error)
-}
+    console.log(error);
+};

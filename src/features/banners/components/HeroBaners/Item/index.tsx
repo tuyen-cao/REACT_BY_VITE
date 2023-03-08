@@ -4,16 +4,26 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 export interface HeroBannerItemProps {
-    banner: HeroBanner,
-    isActive?: boolean
+    banner: HeroBanner;
+    isActive?: boolean;
 }
 
-export default function HeroBannerItem({ banner, isActive }: HeroBannerItemProps) {
-
+export default function HeroBannerItem({
+    banner,
+    isActive,
+}: HeroBannerItemProps) {
     return (
         <>
-            <div className={clsx("owl-item animated ", isActive && " owl-animated-in  active")}>
-                <div className="hero__items set-bg" style={{ backgroundImage: `url(${banner.bannerImage})` }} >
+            <div
+                className={clsx(
+                    'owl-item animated ',
+                    isActive && ' owl-animated-in  active'
+                )}
+            >
+                <div
+                    className="hero__items set-bg"
+                    style={{ backgroundImage: `url(${banner.bannerImage})` }}
+                >
                     <div className="container">
                         <div className="row">
                             <div className="col-xl-5 col-lg-7 col-md-8">
@@ -21,19 +31,27 @@ export default function HeroBannerItem({ banner, isActive }: HeroBannerItemProps
                                     <h6>{banner.collectionType}</h6>
                                     <h2>{banner.collectionName}</h2>
                                     <p>{banner.collectionDescription}</p>
-                                    <Link to='/shops' className="primary-btn">
-                                        Shop now <span className="arrow_right"></span></Link>
+                                    <Link to="/shops" className="primary-btn">
+                                        Shop now{' '}
+                                        <span className="arrow_right"></span>
+                                    </Link>
 
-                                    {banner.socials?.length &&
+                                    {banner.socials?.length && (
                                         <div className="hero__social">
                                             {banner.socials.map((item, i) => {
                                                 return (
-                                                    <Link to={item.path} key={`hero-social-${i}`}>
-                                                        <i className={`fa fa-${item.name}`}></i></Link>
-                                                )
+                                                    <Link
+                                                        to={item.path}
+                                                        key={`hero-social-${i}`}
+                                                    >
+                                                        <i
+                                                            className={`fa fa-${item.name}`}
+                                                        ></i>
+                                                    </Link>
+                                                );
                                             })}
                                         </div>
-                                    }
+                                    )}
                                 </div>
                             </div>
                         </div>

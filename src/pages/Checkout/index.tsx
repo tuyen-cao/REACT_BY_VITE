@@ -1,57 +1,57 @@
-import { CartTotal, PromoCode } from "@/features/products/components";
-import { getAllProductsInCart } from "@/features/products/slice";
-import { useSelector } from "react-redux";
-import { WithQuestionLink } from "@/features/products/hocs";
-import BlackButton from "@/components/form-controls/BlackButton";
-import { CheckoutPayload } from "@/models";
-import { useState, useEffect } from 'react'
-import { CheckoutForm, PaymentMethodForm } from "@/features/products/components/forms";
-import { PAYMENT_METHOD } from "@/constants";
-import PaypalButton from "@/features/products/components/forms/PaypalButton";
-import { ErrorBoundary } from "react-error-boundary";
-import { ErrorFallback, myErrorHandler } from "@/utilities";
+import { CartTotal, PromoCode } from '@/features/products/components';
+import { getAllProductsInCart } from '@/features/products/slice';
+import { useSelector } from 'react-redux';
+import { WithQuestionLink } from '@/features/products/hocs';
+import BlackButton from '@/components/form-controls/BlackButton';
+import { CheckoutPayload } from '@/models';
+import { useState, useEffect } from 'react';
+import {
+    CheckoutForm,
+    PaymentMethodForm,
+} from '@/features/products/components/forms';
+import { PAYMENT_METHOD } from '@/constants';
+import PaypalButton from '@/features/products/components/forms/PaypalButton';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorFallback, myErrorHandler } from '@/utilities';
 
-
-const PromoCodeWithLink = WithQuestionLink(PromoCode)
+const PromoCodeWithLink = WithQuestionLink(PromoCode);
 
 export default function Checkout() {
-    const basketItems = useSelector(getAllProductsInCart)
-    const [submitedCount, setSubmited] = useState(0)
-    const [checkoutInfo, setCheckoutInfo] = useState<CheckoutPayload>({})
-    const [paymentMethod, setPaymentMethod] = useState('')
-
-
+    const basketItems = useSelector(getAllProductsInCart);
+    const [submitedCount, setSubmited] = useState(0);
+    const [checkoutInfo, setCheckoutInfo] = useState<CheckoutPayload>({});
+    const [paymentMethod, setPaymentMethod] = useState('');
 
     const handleFormSubmit = (payload: CheckoutPayload) => {
-        setCheckoutInfo(payload)
-        setSubmited(0)
-    }
+        setCheckoutInfo(payload);
+        setSubmited(0);
+    };
     const handlePaymentFormSubmit = (method: string) => {
-        setPaymentMethod(method)
+        setPaymentMethod(method);
         // add payment method
 
-        setSubmited(0)
-    }
+        setSubmited(0);
+    };
     const handleCheckout = () => {
-        setSubmited((submitedCount) => submitedCount + 1)
-    }
+        setSubmited((submitedCount) => submitedCount + 1);
+    };
     useEffect(() => {
-        if (paymentMethod !== "" && Object.values(checkoutInfo).length > 0) {
-
-            // store user infor + product info + total 
-
+        if (paymentMethod !== '' && Object.values(checkoutInfo).length > 0) {
+            // store user infor + product info + total
         }
-
-    }, [checkoutInfo, paymentMethod])
+    }, [checkoutInfo, paymentMethod]);
 
     return (
-        < section className="spad" >
+        <section className="spad">
             <div className="container">
                 <div className="checkout__form">
                     <div className="row">
-                        <div className="col-lg-8 col-md-6" >
+                        <div className="col-lg-8 col-md-6">
                             <PromoCodeWithLink hasRef />
-                            <CheckoutForm isSubmited={submitedCount} handleFormSubmit={handleFormSubmit} />
+                            <CheckoutForm
+                                isSubmited={submitedCount}
+                                handleFormSubmit={handleFormSubmit}
+                            />
                         </div>
                         <div className="col-lg-4 col-md-6">
                             <div className="checkout__order">
@@ -60,57 +60,93 @@ export default function Checkout() {
                                     Product <span>Total</span>
                                 </div>
 
-                                {basketItems &&
+                                {basketItems && (
                                     <ul className="checkout-order__total-products">
                                         {basketItems.map((p, index) => {
-                                            const formattedNumber = (index + 1).toLocaleString('en-US', {
+                                            const formattedNumber = (
+                                                index + 1
+                                            ).toLocaleString('en-US', {
                                                 minimumIntegerDigits: 2,
-                                                useGrouping: false
-                                            })
-                                            return <>
-                                                <li key={"product-ordered-" + p.id}>
-                                                    <span>{formattedNumber}.</span>
-                                                    <span>{p.title} <strong>({p.quantity})</strong></span>
-                                                    <span>$ {(p.quantity * p.price).toFixed(2)}</span>
-                                                </li>
-                                            </>
+                                                useGrouping: false,
+                                            });
+                                            return (
+                                                <>
+                                                    <li
+                                                        key={
+                                                            'product-ordered-' +
+                                                            p.id
+                                                        }
+                                                    >
+                                                        <span>
+                                                            {formattedNumber}.
+                                                        </span>
+                                                        <span>
+                                                            {p.title}{' '}
+                                                            <strong>
+                                                                ({p.quantity})
+                                                            </strong>
+                                                        </span>
+                                                        <span>
+                                                            ${' '}
+                                                            {(
+                                                                p.quantity *
+                                                                p.price
+                                                            ).toFixed(2)}
+                                                        </span>
+                                                    </li>
+                                                </>
+                                            );
                                         })}
-
                                     </ul>
-                                }
-                                <div className="checkout-order__total-all"><CartTotal /></div>
+                                )}
+                                <div className="checkout-order__total-all">
+                                    <CartTotal />
+                                </div>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adip elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Lorem ipsum dolor sit amet, consectetur adip
+                                    elit, sed do eiusmod tempor incididunt ut
+                                    labore et dolore magna aliqua.
                                 </p>
-                                <PaymentMethodForm isSubmited={submitedCount} handleFormSubmit={handlePaymentFormSubmit} />
-                                <ErrorBoundary FallbackComponent={ErrorFallback}
-                                    onError={myErrorHandler} >
-
-                                    {paymentMethod !== PAYMENT_METHOD.PAYPAL
-                                        && <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
+                                <PaymentMethodForm
+                                    isSubmited={submitedCount}
+                                    handleFormSubmit={handlePaymentFormSubmit}
+                                />
+                                <ErrorBoundary
+                                    FallbackComponent={ErrorFallback}
+                                    onError={myErrorHandler}
+                                >
+                                    {paymentMethod !==
+                                        PAYMENT_METHOD.PAYPAL && (
+                                        <BlackButton
+                                            type="submit"
+                                            cssClass="site-btn"
+                                            handleClick={handleCheckout}
+                                        >
                                             <>PLACE ORDER</>
                                         </BlackButton>
-                                    }
+                                    )}
 
-                                    {paymentMethod === PAYMENT_METHOD.PAYPAL
-                                        && Object.values(checkoutInfo).length > 0
-                                        && <PaypalButton />}
+                                    {paymentMethod === PAYMENT_METHOD.PAYPAL &&
+                                        Object.values(checkoutInfo).length >
+                                            0 && <PaypalButton />}
 
-                                    {paymentMethod === PAYMENT_METHOD.PAYPAL
-                                        && Object.values(checkoutInfo).length === 0
-                                        && <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
-                                            <>PLACE ORDER</>
-                                        </BlackButton>}
-
+                                    {paymentMethod === PAYMENT_METHOD.PAYPAL &&
+                                        Object.values(checkoutInfo).length ===
+                                            0 && (
+                                            <BlackButton
+                                                type="submit"
+                                                cssClass="site-btn"
+                                                handleClick={handleCheckout}
+                                            >
+                                                <>PLACE ORDER</>
+                                            </BlackButton>
+                                        )}
                                 </ErrorBoundary>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-        </section >
-    )
+        </section>
+    );
 }

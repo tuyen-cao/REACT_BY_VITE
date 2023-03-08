@@ -1,11 +1,8 @@
-import { LoginPayload } from '@/models'
-import RegisterForm from '../RegisterForm'
-
+import { LoginPayload } from '@/models';
+import RegisterForm from '../RegisterForm';
 
 export default function Register() {
-    const handleSubmit = (payload: LoginPayload) => {
-
-    }
+    const handleSubmit = (payload: LoginPayload) => {};
     return (
         <div>
             <RegisterForm onSubmit={handleSubmit} />

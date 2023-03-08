@@ -1,8 +1,3 @@
-
 export default function ShopDetail() {
-    return (
-        <>
-            Shop Details
-        </>
-    )
+    return <>Shop Details</>;
 }

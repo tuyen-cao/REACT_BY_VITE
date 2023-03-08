@@ -7,7 +7,10 @@ export default function HeaderTop() {
                 <div className="row">
                     <div className="col-lg-6 col-md-7">
                         <div className="header-top__left">
-                            <p>Free shipping, 30-day return or refund guarantee.</p>
+                            <p>
+                                Free shipping, 30-day return or refund
+                                guarantee.
+                            </p>
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-5">
