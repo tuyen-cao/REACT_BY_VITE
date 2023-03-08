@@ -1,4 +1,5 @@
 export * from './ErrorFallback'
 export * from './Footer'
+export * from './LazyLoadComponent'
 export * from './RouterErrorBoundary'
 export * from './PagePreloader'

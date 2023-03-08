@@ -11,6 +11,7 @@ import PaypalButton from "@/features/products/components/forms/PaypalButton";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback, myErrorHandler } from "@/utilities";
 
+
 const PromoCodeWithLink = WithQuestionLink(PromoCode)
 
 export default function Checkout() {
@@ -18,6 +19,8 @@ export default function Checkout() {
     const [submitedCount, setSubmited] = useState(0)
     const [checkoutInfo, setCheckoutInfo] = useState<CheckoutPayload>({})
     const [paymentMethod, setPaymentMethod] = useState('')
+
+
 
     const handleFormSubmit = (payload: CheckoutPayload) => {
         setCheckoutInfo(payload)

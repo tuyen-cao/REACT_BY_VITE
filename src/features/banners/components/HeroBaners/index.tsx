@@ -44,7 +44,6 @@ export function HeroBanners() {
             width: `${bannerList.length * 100}vw`
         })
 
-        console.log(activeRef.current + " =========  " + activeBanner);
         const prevItem = document.querySelector(`.owl-item:nth-of-type(${activeRef.current + 1})`)
 
         if (activeRef.current !== activeBanner) {
