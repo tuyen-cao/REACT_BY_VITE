@@ -1,2 +1,2 @@
-export * from './category-banner'
-export * from './hero-baners'
+export * from './CategoryBanner'
+export * from './HeroBaners'

@@ -1,2 +1,3 @@
-export * from './auth'
-export * from './student'
+export * from './Auth'
+export * from './FormControls'
+export * from './Product'
