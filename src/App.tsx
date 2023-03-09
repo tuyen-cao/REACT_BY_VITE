@@ -13,7 +13,6 @@ import { Suspense } from 'react';
 
 function App() {
     const { state } = useNavigation();
-
     if (state === 'loading') return <PagePreloder />;
 
     return (

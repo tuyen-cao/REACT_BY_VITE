@@ -1,3 +1,4 @@
+import ShoppingNowButton from '@/components/common/ShoppingNowButton';
 import {
     CartTotal,
     PromoCode,
@@ -8,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 
-export default function Home() {
+export default function ShoppingCart() {
     const totalItems = useSelector(numOfProducts);
 
     return (
@@ -36,13 +37,7 @@ export default function Home() {
                                 </div>
                             </>
                         )}
-                        {totalItems === 0 && (
-                            <span>
-                                <Link to="/shops" className="primary-btn">
-                                    Shopping now!!!
-                                </Link>
-                            </span>
-                        )}
+                        {totalItems === 0 && <ShoppingNowButton />}
                     </div>
                 </div>
             </section>

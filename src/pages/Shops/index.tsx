@@ -1,4 +1,4 @@
-import { ProductItemProps } from '@/components/products';
+import { PagePreloder } from '@/components/common';
 import { ProductSection } from '@/features/products/components';
 import { ProductListQuery, shopLoader } from '@/features/products/loaders';
 import { ProductItemType } from '@/models';
@@ -10,11 +10,13 @@ export default function Shops() {
         ReturnType<ReturnType<typeof shopLoader>>
     >;
 
-    const { data } = useQuery({
+    const { data, isLoading } = useQuery({
         ...ProductListQuery(),
         initialData: initialData,
     });
     const productList = data as ProductItemType[];
+
+    if (isLoading) return <PagePreloder />;
     return (
         <>
             <section className="shop spad">
