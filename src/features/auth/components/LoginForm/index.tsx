@@ -2,9 +2,15 @@ import BlackButton from '@/components/form-controls/BlackButton';
 import { LoginFormProps } from '@/models';
 import SocialLogin from '../SocialLogin';
 
-export default function LoginForm({ onSubmit }: LoginFormProps) {
+export default function LoginForm({
+    onSubmit,
+    onRegisterClick,
+}: LoginFormProps) {
     const handleCheckout = () => {
         onSubmit?.();
+    };
+    const handleClick = () => {
+        onRegisterClick(false);
     };
     return (
         <>
@@ -79,7 +85,10 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
                 </BlackButton>
                 <div className="text-center">
                     <p>
-                        Not a member? <a href="#!">Register</a>
+                        Not a member?{' '}
+                        <button className="btn btn-link" onClick={handleClick}>
+                            Register
+                        </button>
                     </p>
                 </div>
             </form>

@@ -5,7 +5,8 @@ export const API_CONSTANTS = {
     API_GET_ALL_CATEGORIES_INCLUDE_PRODUCTS: '/categories?_embed=products',
     API_GET_PRODUCTS: '/products',
     API_GET_PRODUCT_BY_ID: '/products/{productId}',
-    API_FILTER_PRODUCTS: '/products?{filter}'
+    API_FILTER_PRODUCTS: '/products?{filter}',
+    API_ADD_USER: '/users'
 }
 export const URLPARAMS = {
     ALLPRODUCTTYPES: '_expand=productType&productTypeId_ne=0',

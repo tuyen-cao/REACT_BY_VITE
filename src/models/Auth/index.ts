@@ -6,6 +6,7 @@ export interface LoginPayload {
 
 export interface LoginFormProps {
     onSubmit: (payload: LoginPayload) => void
+    onRegisterClick: (value: boolean) => void
 }
 export interface RegisterPayload {
     registerName: string,
@@ -18,4 +19,10 @@ export interface RegisterPayload {
 
 export interface RegisterFormProps {
     onSubmit: (payload: RegisterPayload) => void
+}
+export interface UserType {
+    email: string,
+    username: string,
+    password: string,
+    displayName: string,
 }

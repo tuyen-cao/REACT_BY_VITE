@@ -3,11 +3,20 @@ import {
     InputField,
     SubmitButton,
 } from '@/components/form-controls';
-import { EMAIL, EMPTY_STRING } from '@/constants';
-import { RegisterFormProps, RegisterPayload } from '@/models';
+import {
+    EMAIL,
+    EMPTY_STRING,
+    ERROR_AUTH_CONFIRM_PASSWORD,
+    ERROR_AUTH_DISPLAY_NAME,
+    ERROR_AUTH_PASSWORD,
+    ERROR_AUTH_USERNAME,
+    ERROR_EMAIL,
+    ERROR_EMAIL_INVALID,
+} from '@/constants';
+import { InputFieldProps, RegisterFormProps, RegisterPayload } from '@/models';
 import { useEffect, useState } from 'react';
 
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, useWatch, Control } from 'react-hook-form';
 import SocialLogin from '../SocialLogin';
 
 export default function RegisterForm({ onSubmit }: RegisterFormProps) {
@@ -23,10 +32,10 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
     });
 
     useEffect(() => {
-        console.log(isValid);
         if (Object.keys(errors).length > 0 && !isValid)
             setValidatied('was-validated');
     }, [errors, isValid]);
+
     return (
         <>
             <form
@@ -44,11 +53,11 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                         rules={{
                             required: {
                                 value: true,
-                                message: ' registerName',
+                                message: ERROR_AUTH_DISPLAY_NAME,
                             },
                             pattern: {
                                 value: EMPTY_STRING,
-                                message: 'registerName',
+                                message: ERROR_AUTH_DISPLAY_NAME,
                             },
                         }}
                         render={({
@@ -62,13 +71,11 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                                 onChange={onChange} // send value to hook form
                                 inputRef={ref}
                                 value={value}
-                                required
                                 errorMessage={errors?.registerName?.message}
                             />
                         )}
                     />
                 </div>
-
                 <div className="form-outline mb-4">
                     <Controller
                         control={control}
@@ -77,11 +84,11 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                         rules={{
                             required: {
                                 value: true,
-                                message: ' registerUsername',
+                                message: ERROR_AUTH_USERNAME,
                             },
                             pattern: {
                                 value: EMPTY_STRING,
-                                message: 'registerUsername',
+                                message: ERROR_AUTH_USERNAME,
                             },
                         }}
                         render={({
@@ -95,13 +102,11 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                                 onChange={onChange} // send value to hook form
                                 inputRef={ref}
                                 value={value}
-                                required
                                 errorMessage={errors?.registerUsername?.message}
                             />
                         )}
                     />
                 </div>
-
                 <div className="form-outline mb-4">
                     <Controller
                         control={control}
@@ -110,11 +115,11 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                         rules={{
                             required: {
                                 value: true,
-                                message: 'Please enter the email',
+                                message: ERROR_EMAIL,
                             },
                             pattern: {
                                 value: EMAIL,
-                                message: 'The email is not valid',
+                                message: ERROR_EMAIL_INVALID,
                             },
                         }}
                         render={({
@@ -128,14 +133,12 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                                 onChange={onChange} // send value to hook form
                                 inputRef={ref}
                                 value={value}
-                                required
                                 type="email"
                                 errorMessage={errors?.registerEmail?.message}
                             />
                         )}
                     />
                 </div>
-
                 <div className="form-outline mb-4">
                     <Controller
                         control={control}
@@ -144,11 +147,11 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                         rules={{
                             required: {
                                 value: true,
-                                message: ' Password',
+                                message: ERROR_AUTH_PASSWORD,
                             },
                             pattern: {
                                 value: EMPTY_STRING,
-                                message: 'Password',
+                                message: ERROR_AUTH_PASSWORD,
                             },
                         }}
                         render={({
@@ -163,13 +166,12 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                                 inputRef={ref}
                                 value={value}
                                 type="password"
-                                required
                                 errorMessage={errors?.registerPassword?.message}
                             />
                         )}
                     />
                 </div>
-
+                {/*  {PasswordWatched(control)} */}
                 <div className="form-outline mb-4">
                     <Controller
                         control={control}
@@ -178,11 +180,16 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                         rules={{
                             required: {
                                 value: true,
-                                message: ' registerRepeatPassword',
+                                message: ERROR_AUTH_CONFIRM_PASSWORD,
                             },
                             pattern: {
                                 value: EMPTY_STRING,
-                                message: 'registerRepeatPassword',
+                                message: ERROR_AUTH_CONFIRM_PASSWORD,
+                            },
+                            validate: {
+                                messages: (value, formValues) =>
+                                    value === formValues.registerPassword ||
+                                    'aaaaaa2222',
                             },
                         }}
                         render={({
@@ -197,13 +204,13 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                                 inputRef={ref}
                                 value={value}
                                 type="password"
-                                required
-                                errorMessage={errors?.registerPassword?.message}
+                                errorMessage={
+                                    errors?.registerRepeatPassword?.message
+                                }
                             />
                         )}
                     />
                 </div>
-
                 <div className="form-check d-flex justify-content-center mb-4">
                     <div className="checkout__input-checkbox">
                         <Controller
@@ -228,14 +235,12 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                                         errors?.registerCheck?.message
                                     }
                                     checked={value}
-                                    required
                                     onChange={onChange}
                                 />
                             )}
                         />
                     </div>
                 </div>
-
                 <SubmitButton cssClass="site-btn w-50 align-self-center">
                     <>Submit</>
                 </SubmitButton>

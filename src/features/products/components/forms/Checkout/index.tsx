@@ -1,14 +1,21 @@
 import { CheckboxField, InputField } from '@/components/form-controls';
 import {
+    DIGITS_ONLY,
     EMAIL,
     EMPTY_STRING,
     ERROR_ADDRESS,
     ERROR_CITY,
     ERROR_COUNTRY,
+    ERROR_EMAIL,
+    ERROR_EMAIL_INVALID,
     ERROR_FIRST_NAME,
     ERROR_LAST_NAME,
+    ERROR_PHONE,
+    ERROR_PHONE_INVALID,
     ERROR_REQUIRED,
     ERROR_STATE,
+    ERROR_ZIPCODE_DIGITS_ONLY,
+    ERROR_ZIPCODE_LENGTH,
     PHONE_NUMBER,
 } from '@/constants';
 import { CheckoutPayload } from '@/models';
@@ -67,8 +74,6 @@ export const CheckoutForm = ({
                 className={validated}
                 onSubmit={handleSubmit(onSubmit)}
             >
-                {/*  <button type='submit' >SUBMIT</button> */}
-
                 <h6 className="checkout__title">Billing Details</h6>
                 <div className="row">
                     <div className="col-lg-6">
@@ -277,16 +282,16 @@ export const CheckoutForm = ({
                                 message: ERROR_REQUIRED,
                             },
                             pattern: {
-                                value: /^[0-9]+$/,
-                                message: 'Must be only digits',
+                                value: DIGITS_ONLY,
+                                message: ERROR_ZIPCODE_DIGITS_ONLY,
                             },
                             minLength: {
                                 value: 5,
-                                message: 'Must be exactly 5 digits',
+                                message: ERROR_ZIPCODE_LENGTH,
                             },
                             maxLength: {
                                 value: 5,
-                                message: 'Must be exactly 5 digits',
+                                message: ERROR_ZIPCODE_LENGTH,
                             },
                         }}
                         render={({ field: { onChange, onBlur, ref } }) => (
@@ -312,12 +317,11 @@ export const CheckoutForm = ({
                                 rules={{
                                     required: {
                                         value: true,
-                                        message:
-                                            'Please enter the Phone number',
+                                        message: ERROR_PHONE,
                                     },
                                     pattern: {
                                         value: PHONE_NUMBER,
-                                        message: 'Phone number is not valid',
+                                        message: ERROR_PHONE_INVALID,
                                     },
                                 }}
                                 render={({
@@ -345,11 +349,11 @@ export const CheckoutForm = ({
                                 rules={{
                                     required: {
                                         value: true,
-                                        message: 'Please enter the email',
+                                        message: ERROR_EMAIL,
                                     },
                                     pattern: {
                                         value: EMAIL,
-                                        message: 'The email is not valid',
+                                        message: ERROR_EMAIL_INVALID,
                                     },
                                 }}
                                 render={({
