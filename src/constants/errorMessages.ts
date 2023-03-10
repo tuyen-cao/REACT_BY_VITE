@@ -14,7 +14,8 @@ export const ERROR_EMAIL = 'Please enter the email'
 export const ERROR_EMAIL_INVALID = 'The email is not valid'
 
 /***************AUTH********************/
+export const ERROR_AUTH_LOGIN_NAME = 'Please enter the login name'
 export const ERROR_AUTH_DISPLAY_NAME = 'Please enter the display name'
 export const ERROR_AUTH_USERNAME = 'Please enter the username'
 export const ERROR_AUTH_PASSWORD = 'Please enter the password'
-export const ERROR_AUTH_CONFIRM_PASSWORD = 'Please enter the Repeat password'
+export const ERROR_AUTH_CONFIRM_PASSWORD = 'The confirmed password does not match the password. Please enter the Repeat password'

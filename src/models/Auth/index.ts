@@ -1,7 +1,7 @@
 
 export interface LoginPayload {
-    email: string,
-    password: string
+    loginName: string,
+    loginPassword: string
 }
 
 export interface LoginFormProps {

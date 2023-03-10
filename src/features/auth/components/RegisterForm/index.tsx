@@ -13,10 +13,10 @@ import {
     ERROR_EMAIL,
     ERROR_EMAIL_INVALID,
 } from '@/constants';
-import { InputFieldProps, RegisterFormProps, RegisterPayload } from '@/models';
+import { RegisterFormProps, RegisterPayload } from '@/models';
 import { useEffect, useState } from 'react';
 
-import { useForm, Controller, useWatch, Control } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import SocialLogin from '../SocialLogin';
 
 export default function RegisterForm({ onSubmit }: RegisterFormProps) {
@@ -189,7 +189,7 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                             validate: {
                                 messages: (value, formValues) =>
                                     value === formValues.registerPassword ||
-                                    'aaaaaa2222',
+                                    ERROR_AUTH_CONFIRM_PASSWORD,
                             },
                         }}
                         render={({

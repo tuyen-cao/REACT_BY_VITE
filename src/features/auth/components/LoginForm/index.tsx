@@ -1,73 +1,140 @@
 import BlackButton from '@/components/form-controls/BlackButton';
-import { LoginFormProps } from '@/models';
+import { LoginFormProps, LoginPayload } from '@/models';
 import SocialLogin from '../SocialLogin';
+import { useState, useEffect } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import {
+    CheckboxField,
+    InputField,
+    SubmitButton,
+} from '@/components/form-controls';
+import {
+    EMPTY_STRING,
+    ERROR_AUTH_LOGIN_NAME,
+    ERROR_AUTH_PASSWORD,
+} from '@/constants';
 
 export default function LoginForm({
     onSubmit,
     onRegisterClick,
 }: LoginFormProps) {
-    const handleCheckout = () => {
-        onSubmit?.();
-    };
+    const [validated, setValidatied] = useState('');
+
     const handleClick = () => {
         onRegisterClick(false);
     };
+    const {
+        control,
+        formState: { errors, isValid },
+        handleSubmit,
+    } = useForm<LoginPayload>({
+        mode: 'onChange',
+        reValidateMode: 'onSubmit',
+        shouldUseNativeValidation: false,
+    });
+
+    useEffect(() => {
+        if (Object.keys(errors).length > 0 && !isValid)
+            setValidatied('was-validated');
+    }, [errors, isValid]);
+
     return (
         <>
-            <form className="d-flex flex-column ">
+            <form
+                name="frmLogin"
+                className={`${validated}  d-flex flex-column justify-content-center`}
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 <SocialLogin />
 
                 {/*<p className="text-center">or:</p> */}
 
                 <div className="form-outline mb-4">
-                    <input
-                        type="email"
-                        id="loginName"
-                        className="form-control"
+                    <Controller
+                        control={control}
+                        name="loginName"
+                        defaultValue={''}
+                        rules={{
+                            required: {
+                                value: true,
+                                message: ERROR_AUTH_LOGIN_NAME,
+                            },
+                            pattern: {
+                                value: EMPTY_STRING,
+                                message: ERROR_AUTH_LOGIN_NAME,
+                            },
+                        }}
+                        render={({
+                            field: { onChange, onBlur, ref, value },
+                        }) => (
+                            <InputField
+                                label="Email or username"
+                                placeholder="Email or username"
+                                name="loginName"
+                                onBlur={onBlur} // notify when input is touched
+                                onChange={onChange} // send value to hook form
+                                inputRef={ref}
+                                value={value}
+                                errorMessage={errors?.loginName?.message}
+                            />
+                        )}
                     />
-                    <label className="form-label" htmlFor="loginName">
-                        Email or username
-                    </label>
-                    <div className="form-notch">
-                        <div className="form-notch-leading"></div>
-                        <div className="form-notch-middle"></div>
-                        <div className="form-notch-trailing"></div>
-                    </div>
                 </div>
 
                 <div className="form-outline mb-4">
-                    <input
-                        type="password"
-                        id="loginPassword"
-                        className="form-control"
+                    <Controller
+                        control={control}
+                        name="loginPassword"
+                        defaultValue=""
+                        rules={{
+                            required: {
+                                value: true,
+                                message: ERROR_AUTH_PASSWORD,
+                            },
+                            pattern: {
+                                value: EMPTY_STRING,
+                                message: ERROR_AUTH_PASSWORD,
+                            },
+                        }}
+                        render={({
+                            field: { onChange, onBlur, ref, value },
+                        }) => (
+                            <InputField
+                                label="Password"
+                                placeholder="Password"
+                                name="loginPassword"
+                                onBlur={onBlur} // notify when input is touched
+                                onChange={onChange} // send value to hook form
+                                inputRef={ref}
+                                value={value}
+                                errorMessage={errors?.loginPassword?.message}
+                            />
+                        )}
                     />
-                    <label className="form-label" htmlFor="loginPassword">
-                        Password
-                    </label>
-                    <div className="form-notch">
-                        <div className="form-notch-leading"></div>
-                        <div className="form-notch-middle"></div>
-                        <div className="form-notch-trailing"></div>
-                    </div>
                 </div>
 
                 <div className="row mb-4">
                     <div className="col-md-6 d-flex justify-content-center">
                         <div className="form-check mb-3 mb-md-0">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value=""
-                                id="loginCheck"
-                                checked
-                            />
-                            <label
-                                className="form-check-label"
-                                htmlFor="loginCheck"
-                            >
-                                {' '}
-                                Remember me{' '}
-                            </label>
+                            <div className="checkout__input-checkbox">
+                                <Controller
+                                    control={control}
+                                    name="loginCheck"
+                                    defaultValue={true}
+                                    render={({
+                                        field: { onChange, onBlur, ref, value },
+                                    }) => (
+                                        <CheckboxField
+                                            label="Remember me"
+                                            name="loginCheck"
+                                            onBlur={onBlur} // notify when input is touched
+                                            inputRef={ref}
+                                            onChange={onChange}
+                                            checked={value}
+                                        />
+                                    )}
+                                />
+                            </div>
                         </div>
                     </div>
 
@@ -76,13 +143,9 @@ export default function LoginForm({
                     </div>
                 </div>
 
-                <BlackButton
-                    type="submit"
-                    cssClass="site-btn w-50 align-self-center"
-                    handleClick={handleCheckout}
-                >
+                <SubmitButton cssClass="site-btn w-50 align-self-center">
                     <>Submit</>
-                </BlackButton>
+                </SubmitButton>
                 <div className="text-center">
                     <p>
                         Not a member?{' '}
