@@ -7,6 +7,8 @@ export interface ControlProps {
     value?: string,
     id?: string,
     inputRef?: (inputElement: HTMLElement) => void;
+    required?: boolean,
+    checked?: boolean
 }
 
 export interface InputFieldProps extends ControlProps {
@@ -14,5 +16,6 @@ export interface InputFieldProps extends ControlProps {
     label?: string,
     placeholder?: string,
     isFocus?: boolean | undefined,
-    value?: string
+    value?: string,
+    errorMessage?: string
 }

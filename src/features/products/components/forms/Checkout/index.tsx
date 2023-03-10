@@ -12,7 +12,7 @@ import {
     PHONE_NUMBER,
 } from '@/constants';
 import { CheckoutPayload } from '@/models';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
@@ -26,7 +26,7 @@ export const CheckoutForm = ({
     handleFormSubmit,
 }: CheckoutFormProps) => {
     const formRef = useRef<HTMLFormElement>(null);
-
+    const [validated, setValidated] = useState('');
     const {
         control,
         formState: { errors, isValid },
@@ -53,7 +53,8 @@ export const CheckoutForm = ({
         if ((isSubmited > 0 && formRef.current) || isValid) {
             formRef.current?.requestSubmit();
         }
-    }, [isSubmited, isValid]);
+        if (Object.keys(errors).length > 0) setValidated('was-validated');
+    }, [errors, isSubmited, isValid]);
 
     const onSubmit = (payload: CheckoutPayload) => {
         handleFormSubmit?.(payload);
@@ -63,7 +64,7 @@ export const CheckoutForm = ({
             <form
                 ref={formRef}
                 name="frmCheckout"
-                className="was-validated"
+                className={validated}
                 onSubmit={handleSubmit(onSubmit)}
             >
                 {/*  <button type='submit' >SUBMIT</button> */}
@@ -93,16 +94,17 @@ export const CheckoutForm = ({
                                         label="Fist Name <span>*</span>"
                                         placeholder="First Name"
                                         name="firstName"
+                                        required
                                         onBlur={onBlur} // notify when input is touched
                                         onChange={onChange} // send value to hook form
                                         inputRef={ref}
                                         value={value}
+                                        errorMessage={
+                                            errors?.firstName?.message
+                                        }
                                     />
                                 )}
                             />
-                            <div className="invalid-feedback">
-                                {errors?.firstName?.message}
-                            </div>
                         </div>
                     </div>
                     <div className="col-lg-6">
@@ -131,12 +133,10 @@ export const CheckoutForm = ({
                                         onChange={onChange} // send value to hook form
                                         inputRef={ref}
                                         isFocus={false}
+                                        errorMessage={errors?.lastName?.message}
                                     />
                                 )}
                             />
-                            <div className="invalid-feedback">
-                                {errors?.lastName?.message}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -163,12 +163,10 @@ export const CheckoutForm = ({
                                 onChange={onChange} // send value to hook form
                                 inputRef={ref}
                                 isFocus={false}
+                                errorMessage={errors?.country?.message}
                             />
                         )}
                     />
-                    <div className="invalid-feedback">
-                        {errors?.country?.message}
-                    </div>
                 </div>
                 <div className="checkout__input">
                     <Controller
@@ -193,12 +191,11 @@ export const CheckoutForm = ({
                                 onChange={onChange} // send value to hook form
                                 inputRef={ref}
                                 isFocus={false}
+                                errorMessage={errors?.address?.message}
                             />
                         )}
                     />
-                    <div className="invalid-feedback">
-                        {errors?.address?.message}
-                    </div>
+
                     <Controller
                         control={control}
                         name="addressapartment"
@@ -237,12 +234,10 @@ export const CheckoutForm = ({
                                 onChange={onChange} // send value to hook form
                                 inputRef={ref}
                                 isFocus={false}
+                                errorMessage={errors?.city?.message}
                             />
                         )}
                     />
-                    <div className="invalid-feedback">
-                        {errors?.city?.message}
-                    </div>
                 </div>
                 <div className="checkout__input">
                     <Controller
@@ -267,12 +262,10 @@ export const CheckoutForm = ({
                                 onChange={onChange} // send value to hook form
                                 inputRef={ref}
                                 isFocus={false}
+                                errorMessage={errors?.state?.message}
                             />
                         )}
                     />
-                    <div className="invalid-feedback">
-                        {errors?.state?.message}
-                    </div>
                 </div>
                 <div className="checkout__input">
                     <Controller
@@ -305,12 +298,10 @@ export const CheckoutForm = ({
                                 onChange={onChange} // send value to hook form
                                 inputRef={ref}
                                 isFocus={false}
+                                errorMessage={errors?.zipcode?.message}
                             />
                         )}
                     />
-                    <div className="invalid-feedback">
-                        {errors?.zipcode?.message}
-                    </div>
                 </div>
                 <div className="row">
                     <div className="col-lg-6">
@@ -340,12 +331,10 @@ export const CheckoutForm = ({
                                         onChange={onChange} // send value to hook form
                                         inputRef={ref}
                                         isFocus={false}
+                                        errorMessage={errors?.phone?.message}
                                     />
                                 )}
                             />
-                            <div className="invalid-feedback">
-                                {errors?.phone?.message}
-                            </div>
                         </div>
                     </div>
                     <div className="col-lg-6">
@@ -375,12 +364,10 @@ export const CheckoutForm = ({
                                         onChange={onChange} // send value to hook form
                                         inputRef={ref}
                                         isFocus={false}
+                                        errorMessage={errors?.email?.message}
                                     />
                                 )}
                             />
-                            <div className="invalid-feedback">
-                                {errors?.email?.message}
-                            </div>
                         </div>
                     </div>
                 </div>

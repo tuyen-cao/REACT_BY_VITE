@@ -7,6 +7,7 @@ export function InputField({
     label,
     placeholder,
     isFocus = false,
+    errorMessage,
     ...rest
 }: InputFieldProps) {
     const textInput = useRef<HTMLInputElement>(null);
@@ -16,15 +17,20 @@ export function InputField({
     return (
         <>
             {label !== undefined && (
-                <label htmlFor={name}>{parse(label)}</label>
+                <label htmlFor={name} className="form-label">
+                    {parse(label)}
+                </label>
             )}
             <input
+                className="form-control"
                 name={name}
                 id={name}
                 placeholder={placeholder}
                 {...rest}
                 ref={textInput}
             />
+
+            <div className="invalid-feedback">{errorMessage}</div>
         </>
     );
 }
