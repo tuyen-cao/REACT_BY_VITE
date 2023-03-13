@@ -16,7 +16,8 @@ export default function HeaderTop() {
                     <div className="col-lg-6 col-md-5">
                         <div className="header-top__right">
                             <div className="header-top__links">
-                                <Link to="/signin">Sign up / Sign in</Link>
+                                <Link to="/register">Sign up</Link> /{' '}
+                                <Link to="/signin">Sign in</Link>
                                 <a href="#">FAQs</a>
                             </div>
                             <div className="header-top__hover">

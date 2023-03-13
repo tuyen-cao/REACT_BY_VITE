@@ -24,6 +24,7 @@ const LazyeBlogDetailPage = lazyWithRetries(
 );
 
 const LazySignInPage = lazyWithRetries(() => import('../../pages/SignIn'));
+const LazyRegisterPage = lazyWithRetries(() => import('../../pages/Register'));
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -65,6 +66,7 @@ export const router = createBrowserRouter(
                 <Route path="blog-details" element={<LazyeBlogDetailPage />} />
             </Route>
             <Route path="signin" element={<LazySignInPage />}></Route>
+            <Route path="register" element={<LazyRegisterPage />}></Route>
         </Route>
     )
 );

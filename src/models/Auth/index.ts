@@ -1,7 +1,12 @@
+export interface IAuthState {
+    isUser: boolean
+}
+
 
 export interface LoginPayload {
     loginName: string,
-    loginPassword: string
+    loginPassword: string,
+    loginCheck: boolean
 }
 
 export interface LoginFormProps {
@@ -21,8 +26,8 @@ export interface RegisterFormProps {
     onSubmit: (payload: RegisterPayload) => void
 }
 export interface UserType {
-    email: string,
-    username: string,
+    email?: string,
+    username?: string,
     password: string,
-    displayName: string,
+    displayName?: string,
 }

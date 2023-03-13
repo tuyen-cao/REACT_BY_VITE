@@ -1,4 +1,3 @@
-import BlackButton from '@/components/form-controls/BlackButton';
 import { LoginFormProps, LoginPayload } from '@/models';
 import SocialLogin from '../SocialLogin';
 import { useState, useEffect } from 'react';
@@ -13,6 +12,7 @@ import {
     ERROR_AUTH_LOGIN_NAME,
     ERROR_AUTH_PASSWORD,
 } from '@/constants';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function LoginForm({
     onSubmit,
@@ -20,9 +20,6 @@ export default function LoginForm({
 }: LoginFormProps) {
     const [validated, setValidatied] = useState('');
 
-    const handleClick = () => {
-        onRegisterClick(false);
-    };
     const {
         control,
         formState: { errors, isValid },
@@ -46,8 +43,6 @@ export default function LoginForm({
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <SocialLogin />
-
-                {/*<p className="text-center">or:</p> */}
 
                 <div className="form-outline mb-4">
                     <Controller
@@ -107,6 +102,7 @@ export default function LoginForm({
                                 onChange={onChange} // send value to hook form
                                 inputRef={ref}
                                 value={value}
+                                type="password"
                                 errorMessage={errors?.loginPassword?.message}
                             />
                         )}
@@ -120,7 +116,6 @@ export default function LoginForm({
                                 <Controller
                                     control={control}
                                     name="loginCheck"
-                                    defaultValue={true}
                                     render={({
                                         field: { onChange, onBlur, ref, value },
                                     }) => (
@@ -149,9 +144,9 @@ export default function LoginForm({
                 <div className="text-center">
                     <p>
                         Not a member?{' '}
-                        <button className="btn btn-link" onClick={handleClick}>
+                        <Link className="btn btn-link" to={'/register'}>
                             Register
-                        </button>
+                        </Link>
                     </p>
                 </div>
             </form>

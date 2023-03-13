@@ -25,6 +25,7 @@
 .header-top__links {
     display: inline-block;
     margin-right: 25px;
+    color: $white-color;
 
     a {
         color: $white-color;
@@ -34,6 +35,7 @@
         margin-right: 28px;
         display: inline-block;
 
+        &:first-child,
         &:last-child {
             margin-right: 0;
         }

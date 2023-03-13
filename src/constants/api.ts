@@ -6,7 +6,8 @@ export const API_CONSTANTS = {
     API_GET_PRODUCTS: '/products',
     API_GET_PRODUCT_BY_ID: '/products/{productId}',
     API_FILTER_PRODUCTS: '/products?{filter}',
-    API_ADD_USER: '/users'
+    API_ADD_USER: 'api/register',
+    API_GET_USER: '/users?{user}'
 }
 export const URLPARAMS = {
     ALLPRODUCTTYPES: '_expand=productType&productTypeId_ne=0',

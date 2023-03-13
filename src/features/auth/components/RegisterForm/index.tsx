@@ -44,7 +44,6 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <SocialLogin />
-                <p className="text-center">or:</p>
                 <div className="form-outline mb-4">
                     <Controller
                         control={control}
@@ -171,7 +170,6 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
                         )}
                     />
                 </div>
-                {/*  {PasswordWatched(control)} */}
                 <div className="form-outline mb-4">
                     <Controller
                         control={control}

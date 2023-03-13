@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import authSlice from '@/features/auth/slice'
 import productsSlice from '@/features/products/slice'
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
@@ -7,6 +8,7 @@ import { TypedUseSelectorHook, useSelector } from 'react-redux';
 export const store = configureStore({
     reducer: {
         // Specify our reducer in the reducers object:
+        auth: authSlice,
         product: productsSlice,
     },
 });
