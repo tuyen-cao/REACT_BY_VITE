@@ -9,10 +9,10 @@ export const addUser = async (user: UserType) => {
         data: user
     })
 }
-export const getUser = async (user: UserType) => {
+export const userLogin = async (user: UserType) => {
     return await request({
-        url: API_CONSTANTS.API_ADD_USER,
-        method: REQUEST_METHOD.GET,
+        url: API_CONSTANTS.API_LOGIN,
+        method: REQUEST_METHOD.POST,
         data: user
     })
 }

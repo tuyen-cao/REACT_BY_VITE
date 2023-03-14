@@ -1,5 +1,11 @@
 export interface IAuthState {
-    isUser: boolean
+    isUser: boolean,
+    setting: IUserInFo
+}
+
+export interface IUserInFo {
+    accessToken: string,
+    user: UserType
 }
 
 
@@ -11,7 +17,6 @@ export interface LoginPayload {
 
 export interface LoginFormProps {
     onSubmit: (payload: LoginPayload) => void
-    onRegisterClick: (value: boolean) => void
 }
 export interface RegisterPayload {
     registerName: string,
@@ -30,4 +35,5 @@ export interface UserType {
     username?: string,
     password: string,
     displayName?: string,
+    id?: number
 }

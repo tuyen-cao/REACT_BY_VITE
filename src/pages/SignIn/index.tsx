@@ -1,47 +1,60 @@
 import { EMAIL } from '@/constants';
 import LoginForm from '@/features/auth/components/LoginForm';
-import RegisterForm from '@/features/auth/components/RegisterForm';
-import { useAddUserData } from '@/features/auth/hooks';
-import { LoginPayload, RegisterPayload, UserType } from '@/models';
-import { useState } from 'react';
+import { userLogin } from '@/services/Auth';
+import { useQuery } from 'react-query';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { UserType } from '@/models';
+import { setUserLogin } from '@/features/auth/slice';
 
 export default function SignIn() {
-    const mutateUserData = useAddUserData();
-    const [isUser, setUser] = useState(true);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [user, setUser] = useState<UserType>({ password: '' });
+
+    const {
+        data: userData,
+        refetch,
+        isSuccess,
+    } = useQuery({
+        queryKey: ['user', user],
+        queryFn: () => userLogin(user),
+        enabled: !!user,
+    });
 
     const handleLoginFormSubmit = (payload: LoginPayload) => {
-        const user: UserType = {
-            password: payload.loginPassword,
-        };
+        setUser((user) => {
+            return { ...user, password: payload.loginPassword };
+        });
         if (payload.loginName.match(EMAIL))
-            console.log({ ...user, email: payload.loginName });
-        else console.log({ ...user, username: payload.loginName });
-    };
-    const handleRegisterFormSubmit = (payload: RegisterPayload) => {
-        try {
-            mutateUserData.mutate({
-                email: payload.registerEmail,
-                password: payload.registerPassword,
-                displayName: payload.registerName,
-                username: payload.registerUsername,
+            setUser((user) => {
+                return { ...user, email: payload.loginName };
             });
-            setUser(true);
-        } catch (e) {
-            console.log(e);
+        else
+            setUser((user) => {
+                return { ...user, username: payload.loginName };
+            });
+        refetch();
+    };
+
+    useEffect(() => {
+        if (isSuccess && user.password !== '') {
+            dispatch(
+                setUserLogin({
+                    accessToken: userData.accessToken,
+                    user: userData?.user,
+                })
+            );
+            navigate('/');
         }
-    };
-    const handleClick = (val: boolean) => {
-        setUser(val);
-    };
+    }, [dispatch, navigate, userData, user, isSuccess]);
     return (
         <section className="spad">
             <div className="container">
                 <div className="row">
                     <div className=" container  flex-column w-50">
-                        <LoginForm
-                            onSubmit={handleLoginFormSubmit}
-                            onRegisterClick={handleClick}
-                        />
+                        <LoginForm onSubmit={handleLoginFormSubmit} />
                     </div>
                 </div>
             </div>

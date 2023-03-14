@@ -12,12 +12,9 @@ import {
     ERROR_AUTH_LOGIN_NAME,
     ERROR_AUTH_PASSWORD,
 } from '@/constants';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export default function LoginForm({
-    onSubmit,
-    onRegisterClick,
-}: LoginFormProps) {
+export default function LoginForm({ onSubmit }: LoginFormProps) {
     const [validated, setValidatied] = useState('');
 
     const {
