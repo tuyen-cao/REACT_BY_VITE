@@ -1,12 +1,13 @@
 import { EMAIL } from "@/constants"
-import { LoginPayload, RegisterPayload, UserType } from "@/models"
+import { IUserInFo, LoginPayload, RegisterPayload, UserType } from "@/models"
 import { addUser, userLogin } from "@/services/Auth";
 import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../slice";
+import { setUser, setUserLogin, setLogout } from "../slice";
 
 
+//const dispatch = useDispatch()
 const useAddUserData = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -23,9 +24,12 @@ const useAddUserData = () => {
 }
 const loginQuery = () => {
     const navigate = useNavigate();
+
+    const dispatch = useDispatch()
     return useMutation({
         mutationFn: userLogin,
         onSuccess: async (data) => {
+            dispatch(setUserLogin(data as IUserInFo))
             navigate("/");
         },
         onError: async (data) => {
@@ -39,7 +43,6 @@ export function useAuth() {
     const mutateUserData = useAddUserData();
 
     const register = async (payload: RegisterPayload) => {
-        console.log("register")
         await mutateUserData.mutate({
             email: payload.registerEmail,
             password: payload.registerPassword,
@@ -56,9 +59,7 @@ export function useAuth() {
 
         await mutateLoginData.mutate(user);
     }
-    const logout = () => {
-        console.log("logout")
-    }
 
-    return { register, login, logout }
+
+    return { register, login }
 }

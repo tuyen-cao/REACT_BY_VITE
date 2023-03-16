@@ -26,14 +26,20 @@ const slice = createSlice({
         },
         setUserLogin: (state: IAuthState, action: PayloadAction<IUserInFo>) => {
             state.setting = action.payload
+        },
+        setLogout: (state: IAuthState) => {
+            state.setting = null
         }
     },
 })
 
 const { actions, reducer } = slice
-export const { setUser, setUserLogin } = actions
+export const { setUser, setUserLogin, setLogout } = actions
 export default reducer
 
 export const isLogin = (state: RootState) => {
-    return Boolean(state.auth.setting.user.id)
-};
+    if (state.auth.setting === null) return false
+    return Boolean(state.auth.setting?.user?.id)
+
+
+}

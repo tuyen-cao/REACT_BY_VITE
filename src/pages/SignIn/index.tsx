@@ -7,8 +7,6 @@ export default function SignIn() {
 
     const handleLoginFormSubmit = (payload: LoginPayload) => {
         auth.login(payload);
-        auth.register();
-        auth.logout();
     };
 
     return (

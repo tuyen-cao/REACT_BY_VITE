@@ -25,8 +25,6 @@ client.interceptors.response.use(
     return response.data;
   },
   async (error) => {
-    const errMessage = error.response.data.message as string;
-    console.log("errMessage: " + errMessage)
     return Promise.reject(error);
   }
 );

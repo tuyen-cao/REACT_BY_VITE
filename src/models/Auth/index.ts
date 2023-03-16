@@ -1,6 +1,6 @@
 export interface IAuthState {
     isUser: boolean,
-    setting: IUserInFo
+    setting: IUserInFo | null
 }
 
 export interface IUserInFo {
