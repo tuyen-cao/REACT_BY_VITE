@@ -28,12 +28,12 @@ const LazyRegisterPage = lazyWithRetries(() => import('../../pages/Register'));
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<App />}>
-            <Route
-                index
-                element={<LazyHome />}
-                errorElement={<ErrorBoundaryRouter />}
-            />
+        <Route
+            path="/"
+            element={<App />}
+            errorElement={<ErrorBoundaryRouter />}
+        >
+            <Route index element={<LazyHome />} />
             <Route path="shops" errorElement={<ErrorBoundaryRouter />}>
                 <Route
                     index

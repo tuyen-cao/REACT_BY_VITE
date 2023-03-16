@@ -1,2 +1,1 @@
-export * from './addUserData'
-export * from './getUserQuery'
+export * from './useAuth'

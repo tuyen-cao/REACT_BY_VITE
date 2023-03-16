@@ -1,21 +1,13 @@
 import RegisterForm from '@/features/auth/components/RegisterForm';
 import { useAddUserData } from '@/features/auth/hooks';
+import { useAuth } from '@/features/auth/hooks/useAuth';
 import { RegisterPayload } from '@/models';
 
 export default function Register() {
-    const mutateUserData = useAddUserData();
+    const auth = useAuth();
 
     const handleRegisterFormSubmit = (payload: RegisterPayload) => {
-        try {
-            mutateUserData.mutate({
-                email: payload.registerEmail,
-                password: payload.registerPassword,
-                displayName: payload.registerName,
-                username: payload.registerUsername,
-            });
-        } catch (e) {
-            console.log(e);
-        }
+        auth.register(payload);
     };
     return (
         <section className="spad">
