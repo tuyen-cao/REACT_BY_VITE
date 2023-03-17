@@ -20,6 +20,20 @@
 
 .header-top__right {
     text-align: right;
+
+    button {
+        margin: 0 0 0 15px;
+        padding: 0;
+        color: $white-color;
+        font-size: 13px;
+        border: 0;
+        text-transform: uppercase;
+
+        &:hover {
+            color: $white-color;
+            text-decoration: none;
+        }
+    }
 }
 
 .header-top__links {
@@ -92,6 +106,8 @@
             cursor: pointer;
         }
     }
+
+
 }
 
 .header__logo {

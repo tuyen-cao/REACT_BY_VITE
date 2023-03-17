@@ -1,7 +1,7 @@
-import { useAuth } from '@/features/auth/hooks';
 import { isLogin, setLogout } from '@/features/auth/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 export default function HeaderTop() {
     const isLogged = useSelector(isLogin);
@@ -30,11 +30,6 @@ export default function HeaderTop() {
                                         <Link to="/signin">Sign in</Link>
                                     </>
                                 )}
-                                {isLogged && (
-                                    <button onClick={handleClick}>
-                                        Logout
-                                    </button>
-                                )}
 
                                 <a href="#">FAQs</a>
                             </div>
@@ -47,6 +42,11 @@ export default function HeaderTop() {
                                     <li>EUR</li>
                                 </ul>
                             </div>
+                            {isLogged && (
+                                <Button variant="link" onClick={handleClick}>
+                                    Logout
+                                </Button>
+                            )}
                         </div>
                     </div>
                 </div>
