@@ -9,9 +9,9 @@
 
     thead {
       border-bottom: 1px solid $background-2;
-      
+
       tr {
-        
+
         th {
           color: $heading-color;
           font-size: 16px;
@@ -31,15 +31,15 @@
           padding-bottom: 30px;
           padding-top: 30px;
 
-          &.product__cart__item {
+          &.cart-item {
             width: 400px;
 
-            .product__cart__item__pic {
+            .cart-item__pic {
               float: left;
               margin-right: 30px;
             }
 
-            .product__cart__item__text {
+            .cart-item__text {
               overflow: hidden;
               padding-top: 21px;
 
@@ -51,7 +51,7 @@
               }
 
               h5 {
-                color:$color-17;
+                color: $color-17;
                 font-weight: 700;
               }
             }
@@ -75,7 +75,7 @@
 
                 .qtybtn {
                   font-size: 16px;
-                  color:$color-16;
+                  color: $color-16;
                   width: 10px;
                   cursor: pointer;
                 }
@@ -114,7 +114,8 @@
   &.update__btn {
     text-align: right;
 
-    a, button {
+    a,
+    button {
       color: $white-color;
       background: $heading-color;
       border-color: $heading-color;
@@ -125,7 +126,8 @@
     }
   }
 
-  a, button {
+  a,
+  button {
     color: $heading-color;
     font-size: 14px;
     font-weight: 700;
@@ -152,14 +154,14 @@
 
     input {
       font-size: 14px;
-      color:$color-13;
+      color: $color-13;
       height: 50px;
       width: 100%;
       border: 1px solid $border-1;
       padding-left: 20px;
 
       &::placeholder {
-        color:$color-13;
+        color: $color-13;
       }
     }
 
@@ -178,11 +180,7 @@
       height: 100%;
     }
   }
-  &.was-validated {
-    .invalid-feedback {
-      display: block;
-    }
-  }
+
 }
 
 .cart__total {
@@ -201,7 +199,7 @@
     li {
       list-style: none;
       font-size: 16px;
-      color:$color-15;
+      color: $color-15;
       line-height: 40px;
       overflow: hidden;
 

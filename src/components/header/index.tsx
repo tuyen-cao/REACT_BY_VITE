@@ -1,14 +1,10 @@
 import * as React from 'react';
-import HeaderLogo from './header-logo';
-import HeaderMenu from './header-menu';
-import HeaderNavOption from './header-nav-option';
-import HeaderTop from './header-top';
+import HeaderLogo from './Logo';
+import HeaderMenu from './Menu';
+import HeaderNavOption from './NavOptions';
+import HeaderTop from './Top';
 
-
-export interface HeaderProps {
-}
-
-export default function Header(props: HeaderProps) {
+export default function Header() {
     return (
         <header className="header">
             <HeaderTop />

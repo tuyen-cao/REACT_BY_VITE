@@ -20,11 +20,26 @@
 
 .header-top__right {
     text-align: right;
+
+    button {
+        margin: 0 0 0 15px;
+        padding: 0;
+        color: $white-color;
+        font-size: 13px;
+        border: 0;
+        text-transform: uppercase;
+
+        &:hover {
+            color: $white-color;
+            text-decoration: none;
+        }
+    }
 }
 
 .header-top__links {
     display: inline-block;
     margin-right: 25px;
+    color: $white-color;
 
     a {
         color: $white-color;
@@ -34,6 +49,7 @@
         margin-right: 28px;
         display: inline-block;
 
+        &:first-child,
         &:last-child {
             margin-right: 0;
         }
@@ -90,6 +106,8 @@
             cursor: pointer;
         }
     }
+
+
 }
 
 .header__logo {
@@ -209,8 +227,8 @@
             color: $color-17;
             font-size: 11px;
             position: absolute;
-            left: 5px;
-            top: 8px;
+            right: 0px;
+            top: 60%;
         }
 
         &:last-child {
